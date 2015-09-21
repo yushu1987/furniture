@@ -16,6 +16,10 @@ class ProductContoller extends BaseContoller {
 			$this->apiResponse ( array (), $e->getErrNo (), $e->getErrStr () );
 		}
 	}
+	public function productListAction() {
+		$objProuduct = new Product();
+		throw new App_Exception(App_Exception_Codes::ORDER_FAILED);
+	}
 	public function addAction() {
 		try {
 			$objProduct = new Product ();
