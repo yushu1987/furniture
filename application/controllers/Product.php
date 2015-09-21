@@ -10,17 +10,17 @@ class ProductController extends BaseController {
 	public function hotAction() {
 		$objProduct = new ProductModel ();
 		$ret = $objProduct->getHotProductList ();
-		$this->apiResponse ( $ret ,false);
+		$this->apiResponse ( $ret);
 		
 	}
 	public function listAction() {
 		$objProuduct = new ProductModel();
-		throw new AppException(AppExceptionCodes::ORDER_FAILED);
+		$list = $objProuduct->getProductList();
+		$this->apiResponse($list);
 	}
 	public function addAction() {
 		$objProduct = new Product ();
-		$arrInput = $_POST;
-		self::__checkParam ( $arrInput );
+		$arrInput = self::__checkParam ( $this->requestParams );
 		$objProduct->addProduct ( $arrInput );
 	}
 	private function __checkParam($arrInput) {

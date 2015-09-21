@@ -5,20 +5,36 @@
  * @see http://www.php.net/manual/en/yaf-dispatcher.catchexception.php
  * @author wangjian
  */
-class BaseController extends Yaf_Controller_Abstract{
-	public function apiResponse($data, $autoRender=true ,$errno=0, $errmsg='') {
-		if(!is_array($data)) {
-			throw new Exception();
+class BaseController extends Yaf_Controller_Abstract {
+	const SECRET = 'mkJw88mH2QCAQjvh';
+	public $requestParams;
+	public function apiResponse($data, $errno = 0, $errmsg = '') {
+		if (! is_array ( $data )) {
+			throw new AppException ( AppExceptionCodes::CUSTOM_EXCEPTION );
 		}
-		$response = array(
-			'errno' => $errno ,
-			'errmsg' =>$errmsg,
-			'data' => $data 
+		$response = array (
+				'errno' => $errno,
+				'errmsg' => $errmsg,
+				'data' => $data 
 		);
-		Yaf_Dispatcher::getInstance()->autoRender($autoRender);
-		if(!$autoRender) {
-			echo json_encode($response);
+		Yaf_Dispatcher::getInstance ()->autoRender ( FALSE );
+		echo json_encode ( $response );
+	}
+	public function init() {
+		$this->requestParams = array_merge ( $_GET, $_POST );
+		if (!self::_checkToken ()) {
+			throw new AppException ( AppExceptionCodes::TOKEN_ERROR );
 		}
+	}
+	private function _checkToken() {
+		$token = $this->requestParams ['token'];
+		unset ( $this->requestParams ['token'] );
+		ksort ( $this->requestParams );
+		foreach ( $this->requestParams as $k => $v ) {
+			$str .= $v;
+		}
+		$str .= self::SECRET;
+		return $token == $str;
 	}
 }
 
