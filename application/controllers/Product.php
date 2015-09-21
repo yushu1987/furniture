@@ -8,9 +8,9 @@
 class ProductController extends BaseController {
 	const PIC_PATH = '/home/wangjian/furniture/data/';
 	public function hotAction() {
-		$objProduct = new Product ();
+		$objProduct = new ProductModel ();
 		$ret = $objProduct->getHotProductList ();
-		$this->apiResponse ( $ret );
+		$this->apiResponse ( $ret ,false);
 		
 	}
 	public function listAction() {

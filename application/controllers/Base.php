@@ -6,7 +6,7 @@
  * @author wangjian
  */
 class BaseController extends Yaf_Controller_Abstract{
-	public function apiResponse($data, $errno=0, $errmsg='') {
+	public function apiResponse($data, $autoRender=true ,$errno=0, $errmsg='') {
 		if(!is_array($data)) {
 			throw new Exception();
 		}
@@ -15,7 +15,10 @@ class BaseController extends Yaf_Controller_Abstract{
 			'errmsg' =>$errmsg,
 			'data' => $data 
 		);
-		echo json_encode($response);
+		Yaf_Dispatcher::getInstance()->autoRender($autoRender);
+		if(!$autoRender) {
+			echo json_encode($response);
+		}
 	}
 }
 

@@ -1,0 +1,1 @@
+WARNING: 09-21 14:06:55: [/home/wangjian/furniture/application/library/AppException.php:29] errno[2] ip[61.135.169.77] logId[0] app[] uri[/product/list] className[] 下单失败 at [ProductController->listAction at /home/wangjian/furniture/application/controllers/Product.php:18]

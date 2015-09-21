@@ -5,7 +5,7 @@
  * @author wangjian
  * @version 1.0.0
  */
-class Log {
+class CLogger {
 	const LOG_LEVEL_FATAL = 0x01;
 	const LOG_LEVEL_WARNING = 0x02;
 	const LOG_LEVEL_NOTICE = 0x04;
@@ -33,10 +33,10 @@ class Log {
 
 	private function __construct($arrLogConfig) {
 		$this->intLevel = intval ( $arrLogConfig ['level'] );
-		$this->strCurApp = APP;
 		$this->strLogFile = $arrLogConfig ['logPath'] .  "/" . self::LOG_FILE_NAME;
-		if(!is_dir( $arrLogConfig ['logPath'] . "/" . $this->strCurApp)) {
-			mkdir( $arrLogConfig ['logPath'] . "/" . $this->strCurApp);
+		if(!is_dir( $arrLogConfig ['logPath'] )) {
+			var_dump($arrLogConfig ['logPath']);
+			mkdir( $arrLogConfig ['logPath'] );
 		}
 		$this->arrSelfLogFiles = empty($arrLogConfig ['selfLogPath']) ? "" : $arrLogConfig ['selfLogPath'];
 		$this->intLogId = 0;
@@ -46,7 +46,7 @@ class Log {
 	public static function getInstance() {
 		$logConf=Conf::getLogConf();
 		if (self::$instance === null) {
-			self::$instance = new Log_Base ( $logConf );
+			self::$instance = new CLogger ( $logConf );
 		}
 		return self::$instance;
 	}
@@ -117,35 +117,35 @@ class Log {
 	}
 
 	public static function selflog($strKey, $str, $arrArgs = null) {
-		return Log_Base::getInstance ()->writeSelfLog ( $strKey, $str, $arrArgs );
+		return CLogger::getInstance ()->writeSelfLog ( $strKey, $str, $arrArgs );
 	}
 
 	public static function debug($str, $errno = 0, $arrArgs = null, $depth = 0) {
-		return Log_Base::getInstance ()->writeLog ( self::LOG_LEVEL_DEBUG, $str, $errno, $arrArgs, $depth + 1 );
+		return CLogger::getInstance ()->writeLog ( self::LOG_LEVEL_DEBUG, $str, $errno, $arrArgs, $depth + 1 );
 	}
 
 	public static function trace($str, $errno = 0, $arrArgs = null, $depth = 0) {
-		return Log_Base::getInstance ()->writeLog ( self::LOG_LEVEL_TRACE, $str, $errno, $arrArgs, $depth + 1 );
+		return CLogger::getInstance ()->writeLog ( self::LOG_LEVEL_TRACE, $str, $errno, $arrArgs, $depth + 1 );
 	}
 
 	public static function notice($str, $errno = 0, $arrArgs = null, $depth = 0) {
-		return Log_Base::getInstance ()->writeLog ( self::LOG_LEVEL_NOTICE, $str, $errno, $arrArgs, $depth + 1 );
+		return CLogger::getInstance ()->writeLog ( self::LOG_LEVEL_NOTICE, $str, $errno, $arrArgs, $depth + 1 );
 	}
 
 	public static function warning($str, $errno = 0, $arrArgs = null, $depth = 0) {
-		return Log_Base::getInstance ()->writeLog ( self::LOG_LEVEL_WARNING, $str, $errno, $arrArgs, $depth + 1 );
+		return CLogger::getInstance ()->writeLog ( self::LOG_LEVEL_WARNING, $str, $errno, $arrArgs, $depth + 1 );
 	}
 
 	public static function fatal($str, $errno = 0, $arrArgs = null, $depth = 0) {
-		return Log_Base::getInstance ()->writeLog ( self::LOG_LEVEL_FATAL, $str, $errno, $arrArgs, $depth + 1 );
+		return CLogger::getInstance ()->writeLog ( self::LOG_LEVEL_FATAL, $str, $errno, $arrArgs, $depth + 1 );
 	}
 
 	public static function setLogId($intLogId) {
-		Log_Base::getInstance ()->intLogId = $intLogId;
+		CLogger::getInstance ()->intLogId = $intLogId;
 	}
 
 	public static function setClassName($strClassName) {
-		Log_Base::getInstance ()->strClassName = $strClassName;
+		CLogger::getInstance ()->strClassName = $strClassName;
 	}
 
 	private static function getClientIP() {

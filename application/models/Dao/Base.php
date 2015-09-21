@@ -3,13 +3,13 @@
 class Dao_BaseModel {
 	public $_db;
 	public $_server;
-	const DATABASE = 'channel';
+	const DATABASE = 'furniture';
 	public $hosts;
 	
 	public function getDB($strDbName) {
 		$this->hosts = Conf::getDBConf();
 		if (empty ( $this->hosts )) {
-			Yii::log ( "get database[$strDbName] error. for conf empty" , 'error');
+			CLogger::fatal ( "get database[$strDbName] error. for conf empty" , 'error');
 			return false;
 		}
 		if (empty ( $this->_db )) {
@@ -17,7 +17,7 @@ class Dao_BaseModel {
 			$this->_db = new DB ();
 			$ret = $this->_db->connect ( $ip, $user, $passwd, $strDbName, $port );
 			if (! $ret) {
-				Yii::log ( "connect database[$strDbName] error . for connect failed",'error' );
+				CLogger::fatal ( "connect database[$strDbName] error . for connect failed",'error' );
 				return false;
 			}
 		}
