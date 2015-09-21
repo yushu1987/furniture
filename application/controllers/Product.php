@@ -6,17 +6,17 @@
  *        
  */
 class ProductController extends BaseController {
-	const PIC_PATH = APPLICATION_PATH. '/static/picture';
 	public function hotAction() {
 		$objProduct = new ProductModel ();
-		$ret = $objProduct->getHotProductList ();
-		$this->apiResponse ( $ret);
+		$arr['list'] = $objProduct->getHotProductList ();
+		$this->apiResponse ( $arr);
 		
 	}
 	public function listAction() {
 		$objProuduct = new ProductModel();
-		$list = $objProuduct->getProductList();
-		$this->apiResponse($list);
+		$arr['list'] = $objProuduct->getProductList();
+		$arr['hasMore']  = count($arr['list']) > 10 ? 1: 0;
+		$this->apiResponse($arr);
 	}
 	public function addAction() {
 		$objProduct = new Product ();
@@ -56,7 +56,7 @@ class ProductController extends BaseController {
 		if (empty ( $_FILES ['file'] ['type'] ) || ! in_array ( $_FILES ['file'] ['type'], $typeAttr )) {
 			throw new App_Exception ( App_Exception_Codes::PIRCTURE_INVALID );
 		}
-		move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], self::PIC_PATH . '/' . $arrInput ['product'] . '/' . date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'] );
+		move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . $arrInput ['product'] . '/' . date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'] );
 		$arrInput ['srcName'] = date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'];
 		return $arrInput;
 	}

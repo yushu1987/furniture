@@ -8,7 +8,7 @@
 class ProductModel extends Dao_BaseModel {
 	const TABLE = 'product';
 	const HOT =1;
-	const PAGE = 10; //默认翻页是10
+	const PAGE = 11; //默认翻页是10
 	public static $arrFields = array (
 			'id',
 			'name',
@@ -46,14 +46,14 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->select(self::TABLE, self::$arrFields, $arrConds, null, $arrAppends);
 		return count ( $ret ) > 0 ? $ret : array ();
 	}
-	public function getProductList($filter=array(), $order= array(),$pn=0, $rn=10) {
+	public function getProductList($filter=array(), $order= array(),$pn=0, $rn=11) {
 		if (empty ( $this->_db )) {
                         $this->_db = self::getDB ( self::DATABASE );
                 }
 		$arrConds = self::getConds($filter);
 		if($order) {
 			$orders = implode(',', $order);
-			$arrAppends = array("order by $orders", "offset $pn limit $rn");
+			$arrAppends = array("order by $orders", "limit $pn, $rn");
 		}else {
 			$arrAppends = array("limit $pn, $rn");
 		}
