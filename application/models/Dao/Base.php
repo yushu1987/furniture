@@ -21,6 +21,7 @@ class Dao_BaseModel {
 				return false;
 			}
 		}
+		$this->_db->query("set names utf8");
 		return $this->_db;
 	}
 	

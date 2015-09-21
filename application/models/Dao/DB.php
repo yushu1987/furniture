@@ -195,7 +195,7 @@ class Dao_DBModel {
 		if (! is_string ( $sql )) {
 			$this->_error ['errno'] = INVALID_SQL;
 			$this->_error ['error'] = 'Input SQL is not valid,please use string or ISQL instance';
-			Yii::log ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno'], 'warning' );
+			CLogger::warning ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno'] );
 			return false;
 		}
 		
@@ -227,7 +227,7 @@ class Dao_DBModel {
 			if (! $ret) {
 				$this->_error ['errno'] = QUERY_ERROR;
 				$this->_error ['error'] = 'Query failed';
-				Yii::log ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno'], 'warning' );
+				CLogger::warning ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno']);
 				if ($this->onfail !== NULL) {
 					call_user_func_array ( $this->onfail, array (
 							$this,
