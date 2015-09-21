@@ -22,6 +22,7 @@ class IndexController extends Yaf_Controller_Abstract {
 		//3. assign
 		$this->getView()->assign("content", $model->selectSample());
 		$this->getView()->assign("name", $name);
+		#$this->getView()->assign("name", APPLICATION_PATH);
 
 		//4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
         return TRUE;
