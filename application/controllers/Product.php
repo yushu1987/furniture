@@ -6,7 +6,7 @@
  *        
  */
 class ProductController extends BaseController {
-	const PIC_PATH = '/home/wangjian/furniture/data/';
+	const PIC_PATH = APPLICATION_PATH. '/static/picture';
 	public function hotAction() {
 		$objProduct = new ProductModel ();
 		$ret = $objProduct->getHotProductList ();
