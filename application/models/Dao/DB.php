@@ -342,7 +342,7 @@ class Dao_DBModel {
 	
 	private function __getSQLAssember() {
 		if ($this->sqlAssember == NULL) {
-			$this->sqlAssember = new SQLAssember ( $this );
+			$this->sqlAssember = new Dao_SQLAssemberModel ( $this );
 		}
 		return $this->sqlAssember;
 	}
@@ -426,7 +426,6 @@ class Dao_DBModel {
 	public function update($table, $row, $conds = NULL, $options = NULL, $appends = NULL) {
 		$this->__getSQLAssember ();
 		$sql = $this->sqlAssember->getUpdate ( $table, $row, $conds, $options, $appends );
-		file_put_contents("/home/rong/zzzzz",var_export($sql, true));
 		if (! $sql || ! $this->query ( $sql )) {
 			return false;
 		}

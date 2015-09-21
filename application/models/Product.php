@@ -47,9 +47,16 @@ class ProductModel extends Dao_BaseModel {
 		return count ( $ret ) > 0 ? $ret : array ();
 	}
 	public function getProductList($filter=array(), $order= array(),$pn=0, $rn=10) {
+		if (empty ( $this->_db )) {
+                        $this->_db = self::getDB ( self::DATABASE );
+                }
 		$arrConds = self::getConds($filter);
-		$orders = implode(',', $order);
-		$arrAppends = array("order by $orders", "offset $pn limit $rn");
+		if($order) {
+			$orders = implode(',', $order);
+			$arrAppends = array("order by $orders", "offset $pn limit $rn");
+		}else {
+			$arrAppends = array("limit $pn, $rn");
+		}
 		$ret  = $this->_db->select(self::TABLE, self::$arrFields, $arrConds, null ,$arrAppends);
 		return count ( $ret ) > 0 ? $ret : array ();
 	}

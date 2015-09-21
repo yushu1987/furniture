@@ -14,7 +14,7 @@ class Dao_BaseModel {
 		}
 		if (empty ( $this->_db )) {
 			extract ( $this->hosts );
-			$this->_db = new DB ();
+			$this->_db = new Dao_DBModel ();
 			$ret = $this->_db->connect ( $ip, $user, $passwd, $strDbName, $port );
 			if (! $ret) {
 				CLogger::fatal ( "connect database[$strDbName] error . for connect failed",'error' );

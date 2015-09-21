@@ -8,7 +8,7 @@ class Dao_SQLAssemberModel {
 	private $sql = NULL;
 	private $db = NULL;
 	
-	public function __construct(DB $db) {
+	public function __construct(Dao_DBModel $db) {
 		$this->db = $db;
 	}
 	

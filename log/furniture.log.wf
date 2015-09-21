@@ -1,1 +1,2 @@
-WARNING: 09-21 14:06:55: [/home/wangjian/furniture/application/library/AppException.php:29] errno[2] ip[61.135.169.77] logId[0] app[] uri[/product/list] className[] 下单失败 at [ProductController->listAction at /home/wangjian/furniture/application/controllers/Product.php:18]
+FATAL: 09-21 19:11:45: [/home/wangjian/furniture/application/models/Dao/Base.php:20] errno[0] ip[61.148.203.250] logId[0] app[] uri[/product/list?token=06948d0cf9fb4021a731d8b379cc572b] className[] connect database[furniture] error . for connect failed
+FATAL: 09-21 19:12:05: [/home/wangjian/furniture/application/models/Dao/Base.php:20] errno[0] ip[61.148.203.250] logId[0] app[] uri[/product/list?token=06948d0cf9fb4021a731d8b379cc572b] className[] connect database[furniture] error . for connect failed

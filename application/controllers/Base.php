@@ -34,7 +34,7 @@ class BaseController extends Yaf_Controller_Abstract {
 			$str .= $v;
 		}
 		$str .= self::SECRET;
-		return $token == $str;
+		return $token == md5($str);
 	}
 }
 
