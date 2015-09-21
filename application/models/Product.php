@@ -5,7 +5,7 @@
  * @desc Product数据获取类, 可以访问数据库，文件，其它系统等
  * @author wangjian
  */
-class Product extends Base {
+class ProductModel extends Dao_BaseModel {
 	const TABLE = 'product';
 	const HOT =1;
 	const PAGE = 10; //默认翻页是10

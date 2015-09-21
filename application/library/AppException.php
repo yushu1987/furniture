@@ -5,15 +5,15 @@
  * @author Administrator
  *        
  */
-class App_Exception extends Exception {
+class AppException extends Exception {
 	private $errno;
 	private $errstr;
 	public function __construct($errno) {
 		$this->errno = $errno;
-		$errstr = @App_Exception_Codes::$errMsg [$errno];
+		$errstr = @AppExceptionCodes::$errMsg [$errno];
 		if (! is_numeric ( $errno )) {
 			$this->errstr = $errstr = $errno;
-			$errno = $this->errno = App_Exception_Codes::CUSTOM_EXCEPTION;
+			$errno = $this->errno = AppExceptionCodes::CUSTOM_EXCEPTION;
 		}
 		if ($errstr == null) {
 			$errstr = '---Errno msg not found . no:' . $errno;

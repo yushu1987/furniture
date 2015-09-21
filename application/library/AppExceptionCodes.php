@@ -5,7 +5,7 @@
  * @author Administrator
  *        
  */
-class App_Exception_Codes {
+class AppExceptionCodes {
 	const PARAM_ERROR 			= 1;
 	const ORDER_FAILED 			= 2;
 	const PICTURE_NOT_EXIST 	= 3;

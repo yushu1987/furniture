@@ -5,7 +5,7 @@
  * @see http://www.php.net/manual/en/yaf-dispatcher.catchexception.php
  * @author wangjian
  */
-class BaseContoller extends Yaf_Controller_Abstract{
+class BaseController extends Yaf_Controller_Abstract{
 	public function apiResponse($data, $errno=0, $errmsg='') {
 		if(!is_array($data)) {
 			throw new Exception();

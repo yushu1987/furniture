@@ -5,31 +5,23 @@
  * @author Administrator
  *        
  */
-class ProductContoller extends BaseContoller {
+class ProductController extends BaseController {
 	const PIC_PATH = '/home/wangjian/furniture/data/';
-	public function hotlistAction() {
-		try {
-			$objProduct = new Product ();
-			$ret = $objProduct->getHotProductList ();
-			$this->apiResponse ( $ret );
-		} catch ( App_Exception $e ) {
-			$this->apiResponse ( array (), $e->getErrNo (), $e->getErrStr () );
-		}
+	public function hotAction() {
+		$objProduct = new Product ();
+		$ret = $objProduct->getHotProductList ();
+		$this->apiResponse ( $ret );
+		
 	}
-	public function productListAction() {
-		$objProuduct = new Product();
-		throw new App_Exception(App_Exception_Codes::ORDER_FAILED);
+	public function listAction() {
+		$objProuduct = new ProductModel();
+		throw new AppException(AppExceptionCodes::ORDER_FAILED);
 	}
 	public function addAction() {
-		try {
-			$objProduct = new Product ();
-			$arrInput = $_POST;
-			self::__checkParam ( $arrInput );
-			$objProduct->addProduct ( $arrInput );
-			
-		} catch ( App_Exception $e ) {
-			//goto error tpl
-		}
+		$objProduct = new Product ();
+		$arrInput = $_POST;
+		self::__checkParam ( $arrInput );
+		$objProduct->addProduct ( $arrInput );
 	}
 	private function __checkParam($arrInput) {
 		$filterAttr = array (

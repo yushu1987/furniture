@@ -5,7 +5,7 @@
  * @desc Orders数据获取类, 可以访问数据库，文件，其它系统等
  * @author wangjian
  */
-class Orders extends Base {
+class OrdersModel extends Dao_BaseModel {
 	const TABLE = 'orders';
 	public static $arrFields = array (
 			'id',
