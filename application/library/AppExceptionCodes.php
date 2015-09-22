@@ -11,6 +11,7 @@ class AppExceptionCodes {
 	const PICTURE_NOT_EXIST 	= 3;
 	const PIRCTURE_INVALID 		= 4;
 	const PIRCTURE_TOO_BIG 		= 5;
+	const SEARCH_WORDS_NULL		= 6;
 	const CUSTOM_EXCEPTION		= 10;
 	const TOKEN_ERROR 			= 100;
 	public static $errMsg = array (
@@ -19,6 +20,7 @@ class AppExceptionCodes {
 			self::PICTURE_NOT_EXIST => "图片没上传",
 			self::PIRCTURE_INVALID => "图片不合法",
 			self::PIRCTURE_TOO_BIG => "图片太大了" ,
+			self::SEARCH_WORDS_NULL => "查询关键字空",
 			self::CUSTOM_EXCEPTION => "通用错误",
 			self::TOKEN_ERROR => "token错误"
 			

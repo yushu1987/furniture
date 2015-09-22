@@ -13,17 +13,25 @@ class ProductController extends BaseController {
 		
 	}
 	public function listAction() {
+		$arrInput = self::_checkFilter($this->requestParams);
 		$objProuduct = new ProductModel();
-		$arr['list'] = $objProuduct->getProductList();
+		$arr['list'] = $objProuduct->getProductList($arrInput['filter'], $arrInput['order'], $arrInput['pn']);
+		$arr['hasMore']  = count($arr['list']) > 10 ? 1: 0;
+		$this->apiResponse($arr);
+	}
+	public function searchAction() {
+		$arrInput = self::_checkSearch($this->requestParams);
+		$objProuduct = new ProductModel();
+		$arr['list'] = $objProuduct->searchProduct($arrInput['words'], $arrInput['pn']);
 		$arr['hasMore']  = count($arr['list']) > 10 ? 1: 0;
 		$this->apiResponse($arr);
 	}
 	public function addAction() {
 		$objProduct = new Product ();
-		$arrInput = self::__checkParam ( $this->requestParams );
+		$arrInput = self::_checkParam ( $this->requestParams );
 		$objProduct->addProduct ( $arrInput );
 	}
-	private function __checkParam($arrInput) {
+	private function _checkParam($arrInput) {
 		$filterAttr = array (
 				'name',
 				'type',
@@ -58,6 +66,32 @@ class ProductController extends BaseController {
 		}
 		move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . $arrInput ['product'] . '/' . date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'] );
 		$arrInput ['srcName'] = date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'];
+		return $arrInput;
+	}
+	
+	private function _checkFilter($arrInput) {
+		$arrInput['filter'] = array();
+		$arrInput['order'] = array();
+		$arrFilter = Conf::getFilterConf();
+		foreach($arrFilter['types'] as $k) {
+			if($arrInput[$k]) {
+				$arrInput['filter'][$k] = $arrInput[$k];
+			}
+		}
+		foreach($arrInput['orders'] as $k) {
+			if($arrInput[$k]) {
+				$arrInput['order'][$k] = $arrInput[$k];
+			}
+		}
+		$arrInput['pn'] = empty($arrInput['pn']) ? 0: intval($arrInput['pn']);
+		return $arrInput;
+	}
+	
+	private function _checkSearch($arrInput) {
+		if(empty($arrInput['words'])) {
+			throw new AppException(AppExceptionCodes::SEARCH_WORDS_NULL);
+		}
+		$arrInput['words'] = trim($arrInput['words']);
 		return $arrInput;
 	}
 }

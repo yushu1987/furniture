@@ -9,7 +9,7 @@ class OrdersModel extends Dao_BaseModel {
 	const TABLE = 'orders';
 	public static $arrFields = array (
 			'id',
-			'customer',
+			'uname',
 			'pid',
 			'amount',
 			'phone',
@@ -26,9 +26,9 @@ class OrdersModel extends Dao_BaseModel {
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
 		return count ( $ret ) > 0 ? $ret : array ();
 	}
-	public function addProduct($arrInput) {
+	public function addOrder($arrInput) {
 		$arrFields = array (
-				'customer' => trim ( $arrInput ['customer'] ),
+				'uname' => trim ( $arrInput ['uname'] ),
 				'pid' => intval ( $arrInput ['pid'] ),
 				'amount' => trim ( $arrInput ['amount'] ),
 				'phone' => trim ( $arrInput ['phone'] ),
