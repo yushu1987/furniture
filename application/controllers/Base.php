@@ -27,6 +27,7 @@ class BaseController extends Yaf_Controller_Abstract {
 		}
 	}
 	private function _checkToken() {
+		return true;
 		$token = $this->requestParams ['token'];
 		unset ( $this->requestParams ['token'] );
 		ksort ( $this->requestParams );

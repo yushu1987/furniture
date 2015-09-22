@@ -10,7 +10,6 @@ class ProductController extends BaseController {
 		$objProduct = new ProductModel ();
 		$arr['list'] = $objProduct->getHotProductList ();
 		$this->apiResponse ( $arr);
-		
 	}
 	public function listAction() {
 		$arrInput = self::_checkFilter($this->requestParams);
@@ -70,18 +69,14 @@ class ProductController extends BaseController {
 	}
 	
 	private function _checkFilter($arrInput) {
-		$arrInput['filter'] = array();
-		$arrInput['order'] = array();
 		$arrFilter = Conf::getFilterConf();
-		foreach($arrFilter['types'] as $k) {
-			if($arrInput[$k]) {
+		foreach($arrFilter['types'] as $k => $v) {
+			if(isset($arrInput[$k])) {
 				$arrInput['filter'][$k] = $arrInput[$k];
 			}
 		}
-		foreach($arrInput['orders'] as $k) {
-			if($arrInput[$k]) {
-				$arrInput['order'][$k] = $arrInput[$k];
-			}
+		if($arrInput['order'] && !in_array($arrInput['order'] ,array_keys($arrFilter['orders']))) {
+			throw new AppException(AppExceptionCodes::PARAM_ERROR);
 		}
 		$arrInput['pn'] = empty($arrInput['pn']) ? 0: intval($arrInput['pn']);
 		return $arrInput;

@@ -52,15 +52,14 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
 		return count ( $ret ) > 0 ? $ret : array ();
 	}
-	public function getProductList($filter = array(), $order = array(), $pn = 0, $rn = 11) {
+	public function getProductList($filter = array(), $order = '', $pn = 0, $rn = 11) {
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );
 		}
 		$arrConds = self::getConds($filter);
 		if ($order) {
-			$orders = implode ( ',', $order );
 			$arrAppends = array (
-					"order by $orders",
+					"order by $order desc",
 					"limit $pn, $rn" 
 			);
 		} else {
