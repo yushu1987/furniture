@@ -4,7 +4,6 @@
  */
 define ( 'INVALID_SQL', 10008 );
 define ( 'QUERY_ERROR', 10009 );
-
 class Dao_DBModel {
 	const T_NUM = 'n';
 	const T_NUM2 = 'd';
@@ -18,31 +17,29 @@ class Dao_DBModel {
 	const FETCH_ROW = 1; // 返回数组
 	const FETCH_ASSOC = 2; // 返回关联数组
 	const FETCH_OBJ = 3; // 返回 Bd_DBResult 对象
-	
 	const LOG_SQL_LENGTH = 30;
-	
 	private $mysql = NULL;
 	private $dbConf = NULL;
 	private $isConnected = false;
 	private $lastSQL = NULL;
-	
 	private $sqlAssember = NULL;
 	private $_error = NULL;
-	
 	public function __construct() {
 		$this->mysql = mysqli_init ();
 	}
-	
 	public function __destruct() {
 		$this->close ();
 	}
 	
 	/**
 	 * @brief 设置mysql连接选项
-	 * 
+	 *
 	 * @param $optName 选项名字        	
 	 * @param $value 选项值        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function setOption($optName, $value) {
@@ -51,9 +48,12 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 设置连接超时
-	 * 
+	 *
 	 * @param $seconds 超时时间        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function setConnectTimeOut($seconds) {
@@ -65,7 +65,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取mysql参数变量
-	 * 
+	 *
 	 * @param unknown_type $name        	
 	 */
 	public function __get($name) {
@@ -91,7 +91,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 连接方法
-	 * 
+	 *
 	 * @param $host 主机        	
 	 * @param $uname 用户名        	
 	 * @param $passwd 密码        	
@@ -128,7 +128,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 重新连接
-	 * 
+	 *
 	 * @return true：成功；false：失败
 	 */
 	public function reconnect() {
@@ -150,8 +150,11 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 关闭连接
-	 * 
+	 *
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function close() {
@@ -164,10 +167,13 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 是否连接，注意，此时mysqli.reconnect需要被关闭
-	 * 
+	 *
 	 * @param
 	 *        	$bolCheck
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function isConnected($bolCheck = false) {
@@ -179,7 +185,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 查询接口
-	 * 
+	 *
 	 * @param $sql 查询sql        	
 	 * @param $fetchType 结果集抽取类型        	
 	 * @param $bolUseResult 是否使用MYSQLI_USE_RESULT        	
@@ -195,7 +201,7 @@ class Dao_DBModel {
 		if (! is_string ( $sql )) {
 			$this->_error ['errno'] = INVALID_SQL;
 			$this->_error ['error'] = 'Input SQL is not valid,please use string or ISQL instance';
-			CLogger::warning ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno'] );
+			CLogger::warning ( 'error:' . $this->_error ['error'] . ' errno:' . $this->_error ['errno'] );
 			return false;
 		}
 		
@@ -227,7 +233,7 @@ class Dao_DBModel {
 			if (! $ret) {
 				$this->_error ['errno'] = QUERY_ERROR;
 				$this->_error ['error'] = 'Query failed';
-				CLogger::warning ( 'error:'.$this->_error ['error'].' errno:'.$this->_error ['errno']);
+				CLogger::warning ( 'error:' . $this->_error ['error'] . ' errno:' . $this->_error ['errno'] );
 				if ($this->onfail !== NULL) {
 					call_user_func_array ( $this->onfail, array (
 							$this,
@@ -270,8 +276,11 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 格式化查询接口
-	 * 
+	 *
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function queryf() {
@@ -339,7 +348,6 @@ class Dao_DBModel {
 		}
 		return $this->query ( $sql, $fetchType, $bolUseResult );
 	}
-	
 	private function __getSQLAssember() {
 		if ($this->sqlAssember == NULL) {
 			$this->sqlAssember = new Dao_SQLAssemberModel ( $this );
@@ -349,7 +357,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief select接口
-	 * 
+	 *
 	 * @param $tables 表名        	
 	 * @param $fields 字段名        	
 	 * @param $conds 条件        	
@@ -358,6 +366,9 @@ class Dao_DBModel {
 	 * @param $fetchType 获取类型        	
 	 * @param $bolUseResult 是否使用MYSQL_USE_RESULT        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function select($tables, $fields, $conds = NULL, $options = NULL, $appends = NULL, $fetchType = self::FETCH_ASSOC, $bolUseResult = false) {
@@ -371,12 +382,15 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief select count(*)接口
-	 * 
+	 *
 	 * @param $tables 表名        	
 	 * @param $conds 条件        	
 	 * @param $options 选项        	
 	 * @param $appends 结尾操作        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function selectCount($tables, $conds = NULL, $options = NULL, $appends = NULL) {
@@ -395,12 +409,15 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief Insert接口
-	 * 
+	 *
 	 * @param $table 表名        	
 	 * @param $row 字段        	
 	 * @param $options 选项        	
 	 * @param $onDup 键冲突时的字段值列表        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function insert($table, $row, $options = NULL, $onDup = NULL) {
@@ -414,13 +431,16 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief Update接口
-	 * 
+	 *
 	 * @param $table 表名        	
 	 * @param $row 字段        	
 	 * @param $conds 条件        	
 	 * @param $options 选项        	
 	 * @param $appends 结尾操作        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function update($table, $row, $conds = NULL, $options = NULL, $appends = NULL) {
@@ -434,12 +454,15 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief delete接口
-	 * 
+	 *
 	 * @param $table 表名        	
 	 * @param $conds 条件        	
 	 * @param $options 选项        	
 	 * @param $appends 结尾操作        	
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function delete($table, $conds = NULL, $options = NULL, $appends = NULL) {
@@ -453,7 +476,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取上一次SQL语句
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getLastSQL() {
@@ -462,7 +485,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取Insert_id
-	 * 
+	 *
 	 * @return int
 	 */
 	public function getInsertID() {
@@ -471,7 +494,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取受影响的行数
-	 * 
+	 *
 	 * @return int
 	 */
 	public function getAffectedRows() {
@@ -480,7 +503,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 查询、设置和移除失败处理句柄
-	 * 
+	 *
 	 * @param string $func        	
 	 * @return boolean
 	 */
@@ -498,14 +521,13 @@ class Dao_DBModel {
 		$this->onfail = $func;
 		return true;
 	}
-	
 	public function escapeString($string) {
 		return $this->mysql->real_escape_string ( $string );
 	}
 	
 	/**
 	 * @brief 选择db库
-	 * 
+	 *
 	 * @return boolean
 	 * @param unknown_type $dbname        	
 	 */
@@ -519,7 +541,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取当前db中存在的表
-	 * 
+	 *
 	 * @param $pattern 表名Pattern        	
 	 * @param $dbname 数据库        	
 	 * @return array
@@ -546,7 +568,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 检查数据表是否存在
-	 * 
+	 *
 	 * @param string $name
 	 *        	表名
 	 * @param string $dbname
@@ -563,10 +585,13 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 设置和查询当前连接的字符集
-	 * 
+	 *
 	 * @param string $name
 	 *        	字符串编码设置
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function charset($name = NULL) {
@@ -578,7 +603,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取连接参数
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getConnConf() {
@@ -595,7 +620,7 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取当前mysqli错误码
-	 * 
+	 *
 	 * @return int
 	 */
 	public function errno() {
@@ -604,8 +629,11 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取当前mysqli错误描述
-	 * 
+	 *
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function error() {
@@ -614,8 +642,11 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取db库错误码
-	 * 
+	 *
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function getErrno() {
@@ -624,12 +655,51 @@ class Dao_DBModel {
 	
 	/**
 	 * @brief 获取db库错误描述
-	 * 
+	 *
 	 * @return
+	 *
+	 *
+	 *
 	 *
 	 */
 	public function getError() {
 		return $this->_error ['error'];
+	}
+	
+	/**
+	 * @brief 事务开始
+	 *
+	 * @return
+	 *
+	 *
+	 *
+	 */
+	public function startTransaction() {
+		$sql = 'START TRANSACTION';
+		return $this->query ( $sql );
+	}
+	
+	/**
+	 * @brief 提交事务
+	 *
+	 * @return
+	 *
+	 *
+	 */
+	public function commit() {
+		$ret = $this->mysql->commit ();
+		return $ret;
+	}
+	
+	/**
+	 * @brief 回滚
+	 *
+	 * @return
+	 *
+	 */
+	public function rollback() {
+		$ret = $this->mysql->rollback ();
+		return $ret;
 	}
 }
 ?>

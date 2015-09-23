@@ -7,6 +7,10 @@
  */
 class OrdersModel extends Dao_BaseModel {
 	const TABLE = 'orders';
+	const NEW_STATUS = 0;
+	const CANCEL_STATUS = 1;
+	const DONE_STATUS = 2;
+	const PEDING_STATUS = 3;
 	public static $arrFields = array (
 			'id',
 			'uname',
@@ -29,16 +33,39 @@ class OrdersModel extends Dao_BaseModel {
 	public function addOrder($arrInput) {
 		$arrFields = array (
 				'uname' => trim ( $arrInput ['uname'] ),
-				'pid' => intval ( $arrInput ['pid'] ),
-				'amount' => trim ( $arrInput ['amount'] ),
+				'pids' => implode (',' ,$arrInput ['pids'] ),
+				'amount' => intval ( $arrInput ['amount'] ),
+				'address' => trim ( $arrInput ['address'] ),
 				'phone' => trim ( $arrInput ['phone'] ),
 				'createTime' => time (),
-				'status' => 0 
+				'status' => NEW_STATUS 
 		);
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );
 		}
-		return $this->_db->insert ( self::TABLE, $arrFields, null, null );
+		$ret = $this->_db->insert ( self::TABLE, $arrFields, null, null );
+		return $ret ? $this->_db->getInsertID(): 0;
+	}
+	public function doneOrder($orderId) {
+		$arrFields=['status' => self::DONE_STATUS];
+		return $this->updateOrders($orderId, $arrFields);
+	}
+	public function cancelOrder($orderId) {
+		$arrFields=['status' => self::CANCEL_STATUS];
+		return $this->updateOrders($orderId, $arrFields);
+	}
+	public function pendingOrder($orderId) {
+		$arrFields=['status' => self::PEDING_STATUS];
+		return $this->updateOrders($orderId, $arrFields);
+	}
+	public function updateOrders($orderId, $arrFields) {
+		$arrConds = self::getConds ( [ 
+				'id' => $orderId 
+		] );
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
+		return $this->_db->update ( self::TABLE, $arrFields, $arrConds );
 	}
 }
 

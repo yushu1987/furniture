@@ -9,6 +9,7 @@ class ProductController extends BaseController {
 	public function hotAction() {
 		$objProduct = new ProductModel ();
 		$arr['list'] = $objProduct->getHotProductList ();
+		$arr['config'] = Conf::getFilterConf();
 		$this->apiResponse ( $arr);
 	}
 	public function listAction() {
@@ -54,14 +55,14 @@ class ProductController extends BaseController {
 		);
 		foreach ( $filterAttr as $attr ) {
 			if (empty ( $arrInput [$attr] )) {
-				throw new App_Exception ( App_Exception_Codes::PARAM_ERROR );
+				throw new AppException ( AppExceptionCodes::PARAM_ERROR );
 			}
 		}
 		if (empty ( $_FILES ['upload'] ) || ! is_uploaded_file ( $_FILES ['upload'] ['tmp_name'] ) || $_FILES ['filename'] ['size'] > self::FILE_MAX_SIZE) {
-			throw new App_Exception ( App_Exception_Codes::PICTURE_NOT_EXIST );
+			throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 		}
 		if (empty ( $_FILES ['file'] ['type'] ) || ! in_array ( $_FILES ['file'] ['type'], $typeAttr )) {
-			throw new App_Exception ( App_Exception_Codes::PIRCTURE_INVALID );
+			throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 		}
 		move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . $arrInput ['product'] . '/' . date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'] );
 		$arrInput ['srcName'] = date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'];

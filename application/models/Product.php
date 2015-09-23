@@ -112,6 +112,13 @@ class ProductModel extends Dao_BaseModel {
 				'status' => $status 
 		] );
 	}
+	public function incSoldProduct($pid) {
+		$sql = 'update '. self::TABLE . ' set sold = sold + 1 where id = '. $pid;
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
+		return $this->_db->query($sql);
+	}
 	public function updateProduct($pid, $arrFields) {
 		$arrConds = self::getConds ( [ 
 				'id' => $pid 

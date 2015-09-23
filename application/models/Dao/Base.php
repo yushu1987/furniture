@@ -41,6 +41,19 @@ class Dao_BaseModel {
 		}
 		return $arrCondsRes;
 	}
+	
+	public function startTransaction() {
+		return $this->_db->startTransaction();
+	}
+	
+	public function commit() {
+		return $this->_db->commit();
+	}
+	
+	public function rollback() {
+		return $this->_db->rollback();
+	}
+	
 }
 
 ?>
