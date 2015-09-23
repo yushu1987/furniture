@@ -12,7 +12,7 @@ class OrdersController  extends BaseController{
 		 }
 		 $objOrders = new OrdersModel();
 		 $orderInfo = $objOrders->getOrderInfoById($orderId);
-		 $pids =  explode(',', $orderInfo);
+		 $pids =  explode(',', $orderInfo['pids']);
 		 $objProduct = new ProductModel();
 		 foreach($pids as $pid) {
 		 	$pinfo = $objProduct->getProductInfoById($pid);
