@@ -57,7 +57,7 @@ class OrdersController  extends BaseController{
 		foreach($arrInput['pids'] as $pid) {
 			$objProduct = new ProductModel();
 			$pinfo = $objProduct->getProductInfoById($pid);
-			if(!empty($pinfo)) {
+			if(empty($pinfo)) {
 				throw new AppException(AppExceptionCodes::INVALID_PID);
 			}
 			$amount += $pinfo['price'];
