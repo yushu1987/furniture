@@ -25,6 +25,7 @@ class AppExceptionCodes {
 			self::PIRCTURE_TOO_BIG => "图片太大了" ,
 			self::SEARCH_WORDS_NULL => "查询关键字空",
 			self::INVALID_PHONE	=> "手机号不合法",
+			self::INVALID_PID => "产品号非法",
 			self::CUSTOM_EXCEPTION => "通用错误",
 			self::NEW_ORDER_FAILED => "下单失败",
 			self::INVALID_ORDERID => "订单号非法",
