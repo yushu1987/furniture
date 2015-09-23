@@ -43,14 +43,23 @@ class Dao_BaseModel {
 	}
 	
 	public function startTransaction() {
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
 		return $this->_db->startTransaction();
 	}
 	
 	public function commit() {
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
 		return $this->_db->commit();
 	}
 	
 	public function rollback() {
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
 		return $this->_db->rollback();
 	}
 	

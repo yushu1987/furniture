@@ -7,35 +7,41 @@
 class OrdersController  extends BaseController{
 	//还有问题
 	public function infoAction () {
-		 if(!$this->requestParams['orderId']) {
-		 	throw new AppException(AppExceptionCodes::INVALID_ORDERID);
-		 }
-		 $objOrders = new OrdersModel();
-		 $orderInfo = $objOrders->getOrderInfoById($orderId);
-		 $pids =  explode(',', $orderInfo['pids']);
-		 $objProduct = new ProductModel();
-		 foreach($pids as $pid) {
-		 	$pinfo = $objProduct->getProductInfoById($pid);
+		if(!$this->requestParams['orderId']) {
+			throw new AppException(AppExceptionCodes::INVALID_ORDERID);
+		}
+		$objOrders = new OrdersModel();
+		$orderInfo = $objOrders->getOrderInfoById($this->requestParams['orderId']);
+		if(empty($orderInfo)) {
+			throw new AppException(AppExceptionCodes::INVALID_ORDERID);
+		}
+		$pids =  explode(',', $orderInfo['pids']);
+		$objProduct = new ProductModel();
+		foreach($pids as $pid) {
+			$pinfo = $objProduct->getProductInfoById($pid);
 		 	if($pinfo) {
 		 		$orderInfo['pinfo'][] = $pinfo;
 		 	}
-		 }
-		 $this->apiResponse(array('orderInfo' => $orderInfo));
+		}
+		$this->apiResponse(array('orderInfo' => $orderInfo));
 	}
 	//还有问题
 	public function addAction() {
 		$arrInput = self::_checkParam($this->requestParams);
 		$objOrders = new OrdersModel();
 		$objOrders->startTransaction();
-		foreach($arrInput['pids'] as $pid) {
-			$orderId = $objOrders->addOrder($arrInput);
-			if($orderId) {
-				$objProduct = new ProductModel();
+		var_dump($arrInput);
+		$orderId = $objOrders->addOrder($arrInput);
+		$objProduct = new ProductModel();
+		if($orderId) {
+			foreach($arrInput['pids'] as $pid) {
 				$ret = $objProduct->incSoldProduct($pid);
 				if(!$ret) {
+					$objOrders->rollback();
 					throw new AppException(AppExceptionCodes::NEW_ORDER_FAILED);
 				}
-			}
+			}	
+		}else {
 			$objOrders->rollback();
 			throw new AppException(AppExceptionCodes::NEW_ORDER_FAILED);
 		}
@@ -54,15 +60,15 @@ class OrdersController  extends BaseController{
 			throw new AppException(AppExceptionCodes::PARAM_ERROR);
 		}
 		$amount=0;
+		$objProduct = new ProductModel();
 		foreach($arrInput['pids'] as $pid) {
-			$objProduct = new ProductModel();
 			$pinfo = $objProduct->getProductInfoById($pid);
 			if(empty($pinfo)) {
 				throw new AppException(AppExceptionCodes::INVALID_PID);
 			}
 			$amount += $pinfo['price'];
 		}
-		$arrInput['$amount']= $amount;
+		$arrInput['amount']= $amount;
  		return $arrInput;
 	}
 	

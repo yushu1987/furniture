@@ -14,7 +14,8 @@ class OrdersModel extends Dao_BaseModel {
 	public static $arrFields = array (
 			'id',
 			'uname',
-			'pid',
+			'pids',
+			'address',
 			'amount',
 			'phone',
 			'createTime',
@@ -28,7 +29,7 @@ class OrdersModel extends Dao_BaseModel {
 				'id' => $orderId 
 		] );
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
-		return count ( $ret ) > 0 ? $ret : array ();
+		return count ( $ret ) > 0 ? $ret[0] : array ();
 	}
 	public function addOrder($arrInput) {
 		$arrFields = array (
@@ -38,7 +39,7 @@ class OrdersModel extends Dao_BaseModel {
 				'address' => trim ( $arrInput ['address'] ),
 				'phone' => trim ( $arrInput ['phone'] ),
 				'createTime' => time (),
-				'status' => NEW_STATUS 
+				'status' => self::NEW_STATUS 
 		);
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );

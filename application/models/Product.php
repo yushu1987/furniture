@@ -36,7 +36,7 @@ class ProductModel extends Dao_BaseModel {
 				'id' => $pid 
 		] );
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
-		return count ( $ret ) > 0 ? $ret : array ();
+		return count ( $ret ) > 0 ? $ret[0] : array ();
 	}
 	public function getHotProductList() {
 		if (empty ( $this->_db )) {
@@ -117,7 +117,8 @@ class ProductModel extends Dao_BaseModel {
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );
 		}
-		return $this->_db->query($sql);
+		$this->_db->query($sql);
+		return $this->_db->affectedRows;
 	}
 	public function updateProduct($pid, $arrFields) {
 		$arrConds = self::getConds ( [ 
