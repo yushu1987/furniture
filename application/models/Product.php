@@ -83,7 +83,6 @@ class ProductModel extends Dao_BaseModel {
 		$arrFields = array (
 				'name' => trim ( $arrInput ['name'] ),
 				'type' => intval ( $arrInput ['type'] ),
-				'shop' => trim ( $arrInput ['shop'] ),
 				'standard' => trim ( $arrInput ['standard'] ),
 				'price' => intval ( $arrInput ['price'] ),
 				'color' => trim ( $arrInput ['color'] ),
@@ -91,7 +90,6 @@ class ProductModel extends Dao_BaseModel {
 				'model' => trim ( $arrInput ['model'] ),
 				'material' => trim ( $arrInput ['material'] ),
 				'picture' => $arrInput ['picture'],
-				'fabrics' => $arrInput ['fabrics'],
 				'series' => $arrInput ['series'],
 				'hot' => 0,
 				'createTime' => time (),

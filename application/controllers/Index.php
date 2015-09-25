@@ -23,7 +23,7 @@ class IndexController extends Yaf_Controller_Abstract {
 		$this->getView()->assign("content", $model->selectSample());
 		$this->getView()->assign("name", $name);
 		#$this->getView()->assign("name", APPLICATION_PATH);
-
+		$this->render('index/index1.tpl', array('user'=>'wangjian'));
 		//4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
         return TRUE;
 	}

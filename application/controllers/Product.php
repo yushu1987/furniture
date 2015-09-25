@@ -27,15 +27,17 @@ class ProductController extends BaseController {
 		$this->apiResponse($arr);
 	}
 	public function addAction() {
-		$objProduct = new Product ();
+		$objProduct = new ProductModel ();
 		$arrInput = self::_checkParam ( $this->requestParams );
-		$objProduct->addProduct ( $arrInput );
+		$ret=$objProduct->addProduct ( $arrInput );
+		if($ret) {
+			
+		}
 	}
 	private function _checkParam($arrInput) {
 		$filterAttr = array (
 				'name',
 				'type',
-				'shop',
 				'standard',
 				'price',
 				'color',
@@ -43,7 +45,6 @@ class ProductController extends BaseController {
 				'model',
 				'material',
 				'picture',
-				'fabrics',
 				'series',
 		);
 		$typeAttr = array (
@@ -65,7 +66,7 @@ class ProductController extends BaseController {
 			throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 		}
 		move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . $arrInput ['product'] . '/' . date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'] );
-		$arrInput ['srcName'] = date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'];
+		$arrInput ['picture'] = date ( 'Y-m-d-H:i:s' ) . '-' . $_FILES ['upload'] ['name'];
 		return $arrInput;
 	}
 	

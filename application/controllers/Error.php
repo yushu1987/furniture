@@ -15,7 +15,6 @@ class ErrorController extends Yaf_Controller_Abstract {
 			$ret = array('errno' => $exception->getErrNo(),'errmsg' => $exception->getErrStr(),'data'=> []);
 			echo json_encode($ret);
 		}else {
-			var_dump($exception);
 			$this->getView()->assign("exception", $exception);
 		}
 		//5. render by Yaf 
