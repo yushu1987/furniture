@@ -8,6 +8,7 @@
 class ProductController extends BaseController {
 	public function homeAction() {
 		$this->display("page/home.tpl");
+		return FALSE;
 	}
 	public function hotAction() {
 		$objProduct = new ProductModel ();
