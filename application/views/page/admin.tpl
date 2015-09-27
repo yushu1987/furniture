@@ -1,6 +1,6 @@
-{extends file="page/base.tpl" }
-{block name="title"}渠道组列表{/block}
-{block name="content"}
+{%extends file="page/base.tpl" %}
+{%block name="title"%}渠道组列表{%/block%}
+{%block name="content"%}
 <table class="table table-bordered table-hover" id="groupTbl" style="">
  	<thead>
 		<tr>
@@ -9,12 +9,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		{foreach from=$admins key=k item=v}
-		<tr id="tr{$k++}">
-			<td>{$k}</td>
-			<td>{$v}</td>
+		{%foreach from=$admins key=k item=v%}
+		<tr id="tr{%$k++%}">
+			<td>{%$k%}</td>
+			<td>{%$v%}</td>
 		</tr>
-		{/foreach}
+		{%/foreach%}
 	</tbody>
 </table>
-{/block}
+{%/block%}

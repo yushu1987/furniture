@@ -1,6 +1,6 @@
-{extends file="page/base.tpl" }
-{block name="title"}订单列表{/block}
-{block name="content"}
+{%extends file="page/base.tpl" %}
+{%block name="title"%}订单列表{%/block%}
+{%block name="content"%}
 <table class="table table-bordered table-hover" id="groupTbl" style="">
  	<thead>
 		<tr>
@@ -15,36 +15,36 @@
 		</tr>
 	</thead>
 	<tbody>
-		{foreach from=$channelList key=k item=v}
-		<tr id="tr{$k+1}">
-			<td>{$v.id}</td>
-			<td>{$v.product}</td>
-			<form method="post" action="/channel/updatechannelgroup?id={$v.id}">
-			<td><input type="text" name="name" value="{$v.channel_group}" id="name" /></td>
-			<td><input type="text" name="detail" value="{$v.channel_list}" id="detail" /></td>
+		{%foreach from=$channelList key=k item=v%}
+		<tr id="tr{%$k+1%}">
+			<td>{%$v.id%}</td>
+			<td>{%$v.product%}</td>
+			<form method="post" action="/channel/updatechannelgroup?id={%$v.id%}">
+			<td><input type="text" name="name" value="{%$v.channel_group%}" id="name" /></td>
+			<td><input type="text" name="detail" value="{%$v.channel_list%}" id="detail" /></td>
 			<td>
 				<input type="text" name="owner" value="" class="span2" id="owner" placeholder="输入操作人"/>
 				<button type="submit" class="btn">更改</button>
 			</td>
 			</form>
 		</tr>
-		{/foreach}
+		{%/foreach%}
 	</tbody>
 </table>
 
 <div align=right>
-	{assign var="pn" value=$smarty.get.pn}
-	{$x = explode('?', $smarty.server.REQUEST_URI)}
-	{assign var="uri" value=$x[0]}
+	{%assign var="pn" value=$smarty.get.pn%}
+	{%$x = explode('?', $smarty.server.REQUEST_URI)%}
+	{%assign var="uri" value=$x[0]%}
 	<ul>
-		{if $pn && $pn >=10}
-			<li><a href="{$uri}?pn={$pn - 10}">Prev</a></li>
-			<li>{$pn/10 + 1}</li>
-			<li><a href="{$uri}?pn={$pn + 10}">Next</a></li>
-		{else}
+		{%if $pn && $pn >=10%}
+			<li><a href="{%$uri%}?pn={%$pn - 10%}">Prev</a></li>
+			<li>{%$pn/10 + 1%}</li>
+			<li><a href="{%$uri%}?pn={%$pn + 10%}">Next</a></li>
+		{%else%}
 			<li>1</li>
-			<li><a href="{$uri}?pn=10">Next</a></li>
-		{/if}
+			<li><a href="{%$uri%}?pn=10">Next</a></li>
+		{%/if%}
 	</ul>
 </div>
-{/block}
+{%/block%}

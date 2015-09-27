@@ -1,6 +1,6 @@
-{extends file="page/base.tpl" }
-{block name="title"}家具后台{/block}
-{block name="content"}
+{%extends file="page/base.tpl" %}
+{%block name="title"%}家具后台{%/block%}
+{%block name="content"%}
 <div id="content" class="container">
 	<form class="form-horizontal" enctype="multipart/form-data" method="post" action="/product/add" >
 	  <div class="control-group">
@@ -64,4 +64,4 @@
 	  </div>
 	</form>
 </div>
-{/block}
+{%/block%}

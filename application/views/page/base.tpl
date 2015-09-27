@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>{block name="title"}家具后台管理{/block}</title>
+<title>{%block name="title"%}家具后台管理{%/block%}</title>
 <link href="/static/css/bootstrap.css" rel="stylesheet">
 <link href="/static/css/main.css" rel="stylesheet">
 <link href="/static/css/tooltip.css" rel="stylesheet">
@@ -35,11 +35,11 @@
 			 </ul>
 		 </div>
 			<div class="span12">
-				{block name="content"}{/block}
+				{%block name="content"%}{%/block%}
 			</div>
 		 </div>
     	<div class="subcontainer footer">
-			<center>{$smarty.now|date_format:'%Y'}@<strong>&nbsp; &nbsp;居然之家</strong>&nbsp; &nbsp;Design By: 王坚</center>
+			<center>{%$smarty.now|date_format:'%Y'%}@<strong>&nbsp; &nbsp;居然之家</strong>&nbsp; &nbsp;Design By: 王坚</center>
 		</div>
     </div>
 </html>
