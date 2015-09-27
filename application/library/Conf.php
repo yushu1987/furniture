@@ -7,6 +7,16 @@
  */
 class Conf {
 	public static $config;
+	public static function isPcUrl() {
+		$pcUrls = array(
+			'/product/home',
+			'/product/add',
+			'/product/all',
+			'/product/update',
+		);
+		$uri = $_SERVER['PHP_SELF'];
+		return in_array($uri, $pcUrls);
+	}
 	public static function getDBConf() {
 		self::$config = Yaf_Application::app()->getConfig();
 		return self::$config->database->config->toArray(); 

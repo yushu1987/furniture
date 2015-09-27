@@ -1,3 +1,3 @@
 <?php
-echo "Error Msg:"  . $exception->getMessage();
+It is Exception. Errno : $errno, Errmsg : $errmsg;
 ?>

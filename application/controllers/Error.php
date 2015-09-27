@@ -11,9 +11,15 @@ class ErrorController extends Yaf_Controller_Abstract {
 	public function errorAction($exception) {
 		//1. assign to view engine
 		if($exception instanceof AppException) {
-			Yaf_Dispatcher::getInstance()->autoRender(false);
-			$ret = array('errno' => $exception->getErrNo(),'errmsg' => $exception->getErrStr(),'data'=> []);
-			echo json_encode($ret);
+			if($exception->getErrNo() <=100 ) {
+				Yaf_Dispatcher::getInstance()->autoRender(false);
+				$ret = array('errno' => $exception->getErrNo(),'errmsg' => $exception->getErrStr(),'data'=> []);
+				echo json_encode($ret);
+			}else {
+				$this->getView()->assign("errno", $exception->getErrNo());
+				$this->getView()->assign("errmsg", $exception->getErrStr());
+				$this->getView()->display("error/error.tpl");
+			}
 		}else {
 			$this->getView()->assign("exception", $exception);
 		}

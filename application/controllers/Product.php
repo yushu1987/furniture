@@ -6,6 +6,9 @@
  *        
  */
 class ProductController extends BaseController {
+	public function homeAction() {
+		$this->display("page/home.tpl");
+	}
 	public function hotAction() {
 		$objProduct = new ProductModel ();
 		$arr['list'] = $objProduct->getHotProductList ();
@@ -26,12 +29,15 @@ class ProductController extends BaseController {
 		$arr['hasMore']  = count($arr['list']) > 10 ? 1: 0;
 		$this->apiResponse($arr);
 	}
-	public function addAction() {
+	public function pcAddAction() {
 		$objProduct = new ProductModel ();
 		$arrInput = self::_checkParam ( $this->requestParams );
 		$ret=$objProduct->addProduct ( $arrInput );
 		if($ret) {
-			
+			$this->assign('data', array('ret' => true, 'jumpUrl'=> '/product/pclist') );
+			$this->display('page/list');
+		}else {
+			throw new AppException(AppExceptionCodes::ADD_PRODUCT_FAILED);
 		}
 	}
 	private function _checkParam($arrInput) {

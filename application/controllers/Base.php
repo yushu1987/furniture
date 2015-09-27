@@ -22,7 +22,7 @@ class BaseController extends Yaf_Controller_Abstract {
 	}
 	public function init() {
 		$this->requestParams = array_merge ( $_GET, $_POST );
-		if (!self::_checkToken ()) {
+		if (!Conf::isPcUrl() && !self::_checkToken ()) {
 			throw new AppException ( AppExceptionCodes::TOKEN_ERROR );
 		}
 	}
@@ -36,6 +36,14 @@ class BaseController extends Yaf_Controller_Abstract {
 		}
 		$str .= self::SECRET;
 		return $token == md5($str);
+	}
+	
+	public function assign($k ,$v) {
+		$this->getView()->assign($k, $v);
+	}
+	
+	public function display($tpl){
+		$this->getView()->display($tpl);
 	}
 }
 
