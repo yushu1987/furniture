@@ -9,4 +9,4 @@ define("APP_PATH",  dirname(__FILE__));
 define('APPLICATION_PATH', APP_PATH . '/application');
 define('PIC_PATH', APPLICATION_PATH . '/static/picture');
 $app = new Yaf_Application(APP_PATH."/conf/application.ini");
-$app->run();
+$app->bootstrap()->run();

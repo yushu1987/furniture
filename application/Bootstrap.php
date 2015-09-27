@@ -30,4 +30,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 		$smarty = new Smarty_Adapter(null, Yaf_Registry::get("config")->get("smarty"));
 		Yaf_Dispatcher::getInstance()->setView($smarty);
 	}
+	public function _initLoader($dispatcher) {
+          	Yaf_Loader::getInstance()->registerLocalNameSpace(array("Smarty"));
+     	}
 }

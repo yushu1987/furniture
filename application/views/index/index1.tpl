@@ -1,3 +1,4 @@
-<?php
-echo $content, " I am $user", $name;
-?>
+<html>
+<head><title>hello</title></head>
+<body>{%$user%}</body>
+</html>
