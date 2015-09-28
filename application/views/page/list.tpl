@@ -21,7 +21,7 @@
 			<tr id="tr{%$k+ 1 %}">
 				<td>{%$k +1%}</td>
 				{%if $v.hot==1%}
-					<td title='热销'>{%$v.name%}<i class="icon-star"></i></td>
+					<td title='热销'>{%$v.name%}<span style="color:red">[热]</span></i></td>
 				{%else%}
 					<td>{%$v.name%}</td>
 				{%/if%}
