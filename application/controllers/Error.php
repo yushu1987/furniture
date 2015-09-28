@@ -19,6 +19,7 @@ class ErrorController extends Yaf_Controller_Abstract {
 				$this->getView()->assign("errno", $exception->getErrNo());
 				$this->getView()->assign("errmsg", $exception->getErrStr());
 				$this->getView()->display("error/error.tpl");
+				return FALSE;
 			}
 		}else {
 			$this->getView()->assign("exception", $exception);
