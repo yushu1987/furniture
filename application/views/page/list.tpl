@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{%foreach from=$data key=k item=v%}
+			{%foreach from=$data.list key=k item=v%}
 			<tr id="tr{%$k+ 1 %}">
 				<td>{%$k +1%}</td>
 				{%if $v.hot==1%}
@@ -43,12 +43,11 @@
 	<ul align='right'>
 		{%if $pn && $pn >=10%}
 			<li>
-			<a href="{%$uri%}?pn={%$pn - 10%}">Prev</a></li>
-			<li>{%$pn/10 + 1%}</li>
-			<li><a href="{%$uri%}?pn={%$pn + 10%}">Next</a></li>
-		{%else%}
-			<li>1</li>
-			<li><a href="{%$uri%}?pn=10">Next</a></li>
+			<a href="{%$uri%}?pn={%$pn - 10%}">上一页</a></li>
+		{%/if%}
+		<li>第{%$pn/10 + 1%}页</li>
+		{%if $data.total > ($pn+10)%}
+			<li><a href="{%$uri%}?pn={%$pn + 10%}">下一页</a></li>
 		{%/if%}
 	</ul>
 	</div>

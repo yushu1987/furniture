@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-28 00:38:23
+<?php /* Smarty version Smarty 3.1.4, created on 2015-09-28 14:12:40
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:143288564556081355c8f741-19741375%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -17,15 +17,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '143288564556081355c8f741-19741375',
+  'nocache_hash' => '3004242415608da5881a484-93236048',
   'function' => 
   array (
   ),
-  'version' => 'Smarty 3.1.4',
-  'unifunc' => 'content_56081355ce366',
   'has_nocache_code' => false,
+  'version' => 'Smarty 3.1.4',
+  'unifunc' => 'content_5608da588c37e',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_56081355ce366')) {function content_56081355ce366($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/wangjian/furniture/application/library/Smarty/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_5608da588c37e')) {function content_5608da588c37e($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/wangjian/furniture/application/library/Smarty/plugins/modifier.date_format.php';
 ?><!DOCTYPE html>
 <html>
 <head>

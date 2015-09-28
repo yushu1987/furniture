@@ -1,2 +1,4 @@
 WARNING: 09-28 10:55:26: [/home/wangjian/furniture/application/controllers/Product.php:65] errno[0] ip[61.148.203.250] logId[0] app[] uri[/product/add] className[] leak name
 WARNING: 09-28 10:55:26: [/home/wangjian/furniture/application/library/AppException.php:29] errno[1] ip[61.148.203.250] logId[0] app[] uri[/product/add] className[] 参数错误 at [ProductController->_checkParam at /home/wangjian/furniture/application/controllers/Product.php:66]
+WARNING: 09-28 14:13:02: [/home/wangjian/furniture/application/models/Dao/DB.php:236] errno[0] ip[61.148.203.250] logId[0] app[] uri[/product/pclist] className[] error:Query failed errno:10009
+WARNING: 09-28 14:14:00: [/home/wangjian/furniture/application/models/Dao/DB.php:237] errno[0] ip[61.148.203.250] logId[0] app[] uri[/product/pclist] className[] error:Query failed errno:10009

@@ -25,7 +25,7 @@ class ProductController extends BaseController {
 	}
 	public function pclistAction() {
 		$objProuduct = new ProductModel();
-		$arr['list'] = $objProuduct->getProductList([], [], $arrInput['pn']);
+		$arr['list'] = $objProuduct->getProductList([], '', intval($this->requestParams['pn']), 10);
 		$arr['total']  = $objProuduct->getProductCount();
 		$this->assign('data', $arr);
 		$this->display('page/list.tpl');
