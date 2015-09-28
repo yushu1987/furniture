@@ -15,7 +15,7 @@ class IndexController extends Yaf_Controller_Abstract {
 	public function indexAction($name = "Stranger") {
 		//1. fetch query
 		$get = $this->getRequest()->getQuery("get", "default value");
-
+		var_dump($_SERVER);
 		//2. fetch model
 		//3. assign
 		$this->getView()->assign("name", $name);
