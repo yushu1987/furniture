@@ -68,6 +68,12 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
 		return count ( $ret ) > 0 ? $ret : array ();
 	}
+	public function getProductCount() {
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
+		return $this->_db->selectCount(self::TABLE);
+	}
 	public function searchProduct($words, $pn=10) {
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );

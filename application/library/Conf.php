@@ -13,6 +13,7 @@ class Conf {
 			'/product/add',
 			'/product/all',
 			'/product/update',
+			'/product/pclist'
 		);
 		$uri = $_SERVER['PHP_SELF'];
 		return in_array($uri, $pcUrls);

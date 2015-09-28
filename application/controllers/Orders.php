@@ -5,7 +5,6 @@
  *        
  */
 class OrdersController  extends BaseController{
-	//还有问题
 	public function infoAction () {
 		if(!$this->requestParams['orderId']) {
 			throw new AppException(AppExceptionCodes::INVALID_ORDERID);
@@ -25,7 +24,7 @@ class OrdersController  extends BaseController{
 		}
 		$this->apiResponse(array('orderInfo' => $orderInfo));
 	}
-	//还有问题
+
 	public function addAction() {
 		$arrInput = self::_checkParam($this->requestParams);
 		$objOrders = new OrdersModel();

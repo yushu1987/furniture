@@ -23,6 +23,13 @@ class ProductController extends BaseController {
 		$arr['hasMore']  = count($arr['list']) > 10 ? 1: 0;
 		$this->apiResponse($arr);
 	}
+	public function pclistAction() {
+		$objProuduct = new ProductModel();
+		$arr['list'] = $objProuduct->getProductList([], [], $arrInput['pn']);
+		$arr['total']  = $objProuduct->getProductCount();
+		$this->assign('data', $arr);
+		$this->display('page/list.tpl');
+	}
 	public function searchAction() {
 		$arrInput = self::_checkSearch($this->requestParams);
 		$objProuduct = new ProductModel();
@@ -36,7 +43,7 @@ class ProductController extends BaseController {
 		$ret=$objProduct->addProduct ( $arrInput );
 		if($ret) {
 			$this->assign('data', array('ret' => true, 'jumpUrl'=> '/product/pclist') );
-			$this->display('page/list.tpl');
+			$this->display('page/jump.tpl');
 		}else {
 			throw new AppException(AppExceptionCodes::ADD_PRODUCT_FAILED);
 		}
