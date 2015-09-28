@@ -1,5 +1,5 @@
 {%extends file="page/base.tpl" %}
-{%block name="title"%}上传列表{%/block%}
+{%block name="title"%}产品列表{%/block%}
 {%block name="content"%}
 <div id="content" class="container" >
 	<table class=" table table-bordered table-hover" id="group_list" style="">
@@ -7,37 +7,31 @@
 			<tr>
 				<th>id</th>
 				<th>产品</th>
-				<th>版本</th>
-				<th>渠道组</th>
-				<th>母包</th>
-				<th>渠道包</th>
-				<th>状态</th>
-				<th>操作人</th>
-				<th>时间</th>
+				<th>类型</th>
+				<th>系列</th>
+				<th>价格</th>
+				<th>销量</th>
+				<th>颜色</th>
+				<th>图片</th>
+				<th>上架时间</th>
 			</tr>
 		</thead>
 		<tbody>
-			{%foreach from=$list key=k item=v%}
-			<tr id="tr{%$v.id + 1 %}">
-				<td>{%$v.id +1%}</td>
-				<td>{%$v.product%}</td>
-				<td>{%$v.product_version%}</td>
-				<td><a href="#" name="channel_group" id="channel_group" rel="popover" data-trigger="hover" data-content="{%$v.channel_list%}" data-original-title="详细">{%$v.channel_group%}</a>
-				<td><a href="{%$v.parent_url%}">下载</a></td>
-				<td><a href="{%$v.channel_url%}">下载</a></td>
-				<td>
-					{%if $v.status == '未执行'%}
-						<statusU>{%$v.status%}</statusU>
-					{%elseif $v.status == '执行中'%}
-						<statusI>{%$v.status%}</statusI>
-					{%elseif $v.status == '成功'%}
-						<statusD>{%$v.status%}</statusD>
-					{%else%}
-						<statusF>{%$v.status%}</statusF>
-					{%/if%}
-				</td>
-				<td>{%$v.owner%}</td>
-				<td>{%$v.task_time|date_format:'%Y-%m-%d %H:%M:%S'%}</td>
+			{%foreach from=$data key=k item=v%}
+			<tr id="tr{%$k+ 1 %}">
+				<td>{%$k +1%}</td>
+				{%if $v.hot==1%}
+					<td title='热销'>{%$v.name%}<i class="icon-star"></i></td>
+				{%else%}
+					<td>{%$v.name%}</td>
+				{%/if%}
+				<td>{%$v.type%}</td>
+				<td>{%$v.series%}</td>
+				<td>{%$v.price%}</td>
+				<td>{%$v.sold%}</td>
+				<td>{%$v.color%}</td>
+				<td>{%$v.picture%}</td>
+				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M:%S'%}</td>
 			</tr>
 			{%/foreach%}
 		</tbody>
@@ -61,11 +55,4 @@
 </div>
 </div>
 </div>
-<script>
-$(function ()
-{% 
-	$('[name="channel_group"]').popover('hide');
-
-%});
-</script>
 {%/block%}

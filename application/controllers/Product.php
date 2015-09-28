@@ -36,7 +36,7 @@ class ProductController extends BaseController {
 		$ret=$objProduct->addProduct ( $arrInput );
 		if($ret) {
 			$this->assign('data', array('ret' => true, 'jumpUrl'=> '/product/pclist') );
-			$this->display('page/list');
+			$this->display('page/list.tpl');
 		}else {
 			throw new AppException(AppExceptionCodes::ADD_PRODUCT_FAILED);
 		}
