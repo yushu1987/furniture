@@ -21,9 +21,9 @@
 			<tr id="tr{%$k+ 1 %}">
 				<td>{%$k +1%}</td>
 				{%if $v.hot==1%}
-					<td title='热销'>{%$v.name%}<span style="color:red">[热]</span></i></td>
+					<td title='热销'><a href="/product/pcinfo?pid={%$v.id%}">{%$v.name%}</a><span style="color:red">[热]</span></i></td>
 				{%else%}
-					<td>{%$v.name%}</td>
+					<td><a href="/product/pcinfo?pid={%$v.id%}">{%$v.name%}</a></td>
 				{%/if%}
 				<td>{%$v.type%}</td>
 				<td>{%$v.series%}</td>
