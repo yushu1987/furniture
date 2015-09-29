@@ -9,7 +9,7 @@ class Picture {
 	const MAX = 300;
 	public static function resizeImage($srcFile) {
 		$show_pic_scal = self::show_pic_scal ( self::MAX, self::MAX, PIC_PATH. '/' . $srcFile );
-		return basename(self::resize ( $filename, $show_pic_scal [0], $show_pic_scal [1] ));
+		return basename(self::resize ( PIC_PATH. '/' .$srcFile, $show_pic_scal [0], $show_pic_scal [1] ));
 	}
 	private static function show_pic_scal($width, $height, $picpath) {
 		$imginfo = getimagesize ( $picpath );
@@ -60,7 +60,7 @@ class Picture {
 		$dir = $temp ["dirname"]; // 文件所在的文件夹
 		$extension = $temp ["extension"]; // 文件扩展名
 		$savepath = "{$dir}/small-{$name}"; // 缩略图保存路径,新的文件名为*.thumb.jpg
-		                                    
+		 CLogger::warning("small photo ".$savepath);	                                    
 		// 获取图片的基本信息
 		$info = getimagesize ( $src );
 		$width = $info [0]; // 获取图片宽度
@@ -127,5 +127,3 @@ class Picture {
 	}
 }
 ?>
-		
-}

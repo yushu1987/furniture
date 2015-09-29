@@ -1,3 +1,3 @@
-<?php
-It is Exception. Errno : $errno, Errmsg : $errmsg;
-?>
+<html>
+It is Exception. Errno : {%$errno%}, Errmsg : {%$errmsg%};
+</html>

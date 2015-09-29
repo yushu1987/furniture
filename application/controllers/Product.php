@@ -15,8 +15,16 @@ class ProductController extends BaseController {
 			'color',
 			'model',
 			'material',
+			'area',
 			'series' 
 	);
+	static $typeAttr = array (
+                        'image/gif',
+                        'image/png',
+                        'image/jpeg',
+                        'image/pjpeg',
+                        'image/bmp'
+        );
 	public function homeAction() {
 		$this->display ( "page/home.tpl" );
 	}
@@ -80,6 +88,30 @@ class ProductController extends BaseController {
 		if (empty ( $pinfo )) {
 			throw new AppException ( AppExceptionCodes::INVALID_PID );
 		}
+		$keyArr = array(
+				'id' => '产品号',
+				'name' =>'名称',
+				'type' => '类型',
+				'standard' => '规格',
+				'price' => '价格',
+				'sold' => '销量',
+				'area' => '产地',
+				'color' => '颜色',
+				'model' => '型号',
+				'material' => '材质',
+				'picture' => '图片',
+				'series' => '系列',
+				'createTime' => '上传时间', 
+				'status' => '状态',
+				'hot' => '热门'
+				);
+
+		foreach($pinfo as $k => &$v) {
+			$v = array(
+				'name' => $keyArr[$k],
+				'val' => $v
+			);
+		}
 		$this->assign ( 'data', $pinfo );
 		$this->display ( 'page/info.tpl' );
 	}
@@ -90,7 +122,7 @@ class ProductController extends BaseController {
 		if ($ret) {
 			$this->assign ( 'data', array (
 					'ret' => true,
-					'jumpUrl' => '/product/info?pid=' . $arrInput ['pid'] 
+					'jumpUrl' => '/product/pcinfo?pid=' . $arrInput ['pid'] 
 			) );
 			$this->display ( 'page/jump.tpl' );
 		} else {
@@ -98,29 +130,22 @@ class ProductController extends BaseController {
 		}
 	}
 	private function _checkParam($arrInput) {
-		$typeAttr = array (
-				'image/gif',
-				'image/png',
-				'image/jpeg',
-				'image/pjpeg',
-				'image/bmp' 
-		);
 		foreach ( self::$filterAttr as $attr ) {
 			if (empty ( $arrInput [$attr] )) {
 				CLogger::warning ( "leak $attr" );
 				throw new AppException ( AppExceptionCodes::PARAM_ERROR );
 			}
 		}
-		if (empty ( $_FILES ['upload'] ) || ! is_uploaded_file ( $_FILES ['upload'] ['tmp_name'] ) || $_FILES ['filename'] ['size'] > self::FILE_MAX_SIZE) {
+		if (empty ( $_FILES ['upload'] ) || ! is_uploaded_file ( $_FILES ['upload'] ['tmp_name'] ) || $_FILES ['upload'] ['size'] > self::FILE_MAX_SIZE) {
 			throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 		}
-		if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], $typeAttr )) {
+		if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], self::$typeAttr )) {
 			throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 		}
-		if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
+		if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['name'], '.' ), 1 ) )) {
 			throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 		}
-		$arrInput ['picture']['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+		$arrInput ['picture']['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['name'], '.' ), 1 );
 		$arrInput ['picture']['small'] =  Picture::resizeImage($arrInput ['picture'] ['big']);;
 		return $arrInput;
 	}
@@ -146,11 +171,12 @@ class ProductController extends BaseController {
 	}
 	private function _checkModify($arrInput) {
 		$arrOutput = array ();
-		if (empty ( $arrInput ['pid'] )) {
+		if (empty ( $arrInput ['id'] )) {
 			throw new AppException ( AppExceptionCodes::INVALID_PID );
 		}
+		self::$filterAttr = array_merge(self::$filterAttr, ['status', 'hot']);
 		foreach ( self::$filterAttr as $attr ) {
-			if ($arrInput [$attr]) {
+			if (isset($arrInput [$attr])) {
 				$arrOutput ['fields'] [$attr] = $arrInput [$attr];
 			}
 		}
@@ -158,16 +184,17 @@ class ProductController extends BaseController {
 			throw new AppException ( AppExceptionCodes::PARAM_ERROR );
 		}
 		if (! empty ( $_FILES ['upload'] ) && is_uploaded_file ( $_FILES ['upload'] ['tmp_name'] )) {
-			if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], $typeAttr )) {
+			if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], self::$typeAttr )) {
 				throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 			}
-			if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
+			if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['name'], '.' ), 1 ) )) {
 				throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 			}
-			$arrOutput ['fields'] ['picture'] ['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+			$arrOutput ['fields'] ['picture'] ['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['name'], '.' ), 1 );
 			$arrOutput ['fields'] ['picture'] ['small'] = Picture::resizeImage($arrOutput ['fields'] ['picture'] ['big']);
+			$arrOutput ['fields'] ['picture']  = json_encode($arrOutput ['fields'] ['picture']);
 		}
-		$arrOutput ['pid'] = $arrInput ['pid'];
+		$arrOutput ['pid'] = $arrInput ['id'];
 		return $arrOutput;
 	}
 }

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-28 14:12:40
+<?php /* Smarty version Smarty 3.1.4, created on 2015-09-29 16:55:55
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7cc4017ab22af802f7f760ad12aba61a5cad7e63' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/home.tpl',
-      1 => 1443370948,
+      1 => 1443516896,
       2 => 'file',
     ),
     '1c5dfe95bbdcc708259c242892595daf379a5e00' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/base.tpl',
-      1 => 1443371690,
+      1 => 1443516896,
       2 => 'file',
     ),
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty 3.1.4',
   'unifunc' => 'content_5608da588c37e',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5608da588c37e')) {function content_5608da588c37e($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/wangjian/furniture/application/library/Smarty/plugins/modifier.date_format.php';
 ?><!DOCTYPE html>
@@ -33,12 +33,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>家具后台</title>
 <link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/lrtk.css" rel="stylesheet">
 <link href="/static/css/main.css" rel="stylesheet">
 <link href="/static/css/tooltip.css" rel="stylesheet">
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/jquery.form.js"></script>
 <script src="/static/js/bootstrap.js"></script>
-<script src="/static/js/super.js"></script>
+<script src="/static/js/jquery.imgbox.pack.js"></script>
 </head>
 <body>
     <div class="container">
@@ -69,7 +70,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	  <div class="control-group">
 	    <label class="control-label" for="upload">上传图片:</label>
 	    <div class="controls">
-	      <input type="file" class="input-small" id="upload" name="upload" accept=".jpg,.png,.gif,.jpeg,.bmp" required placeholder="文件路径">
+	      <input type="file" class="input-small" id="upload" name="upload" accept=".jpg,.png,.gif,.jpeg,.bmp" required placeholder="图片路径">
 	    </div>
 	  </div>
 	  <div class="control-group">

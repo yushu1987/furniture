@@ -13,9 +13,14 @@ class Conf {
 			'/product/add',
 			'/product/all',
 			'/product/update',
-			'/product/pclist'
+			'/product/pclist',
+			'/product/pcinfo',
+			'/product/modify',
 		);
-		$uri = $_SERVER['PHP_SELF'];
+		$uri = $_SERVER['REQUEST_URI'];
+		if(($pos = strpos($uri,"?")) !== false) {
+			$uri = substr($uri,0,$pos);
+		}
 		return in_array($uri, $pcUrls);
 	}
 	public static function getDBConf() {

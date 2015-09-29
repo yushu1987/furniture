@@ -6,7 +6,7 @@
  * @author wangjian
  */
 class ProductModel extends Dao_BaseModel {
-	const PICTURE_URL = '/static/picture/';
+	const PIC_URL = '/static/picture/';
 	const TABLE = 'product';
 	const HOT = 1;
 	const PAGE = 11; // 默认翻页是10
@@ -36,7 +36,7 @@ class ProductModel extends Dao_BaseModel {
 		] );
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
 		if(count($ret) > 0) {
-			$ret[0]['picture'] = json_decode($ret[0]['picture'], true);
+			$ret[0]['picture'] = $this->_formatPicture($ret[0]['picture']);
 			return $ret[0];
 		}
 		return array ();
@@ -55,7 +55,7 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
 		if(count($ret) > 0) {
 			foreach($ret as &$item) {
-				$item['picture'] = json_decode($item['picture'], true);
+				$item['picture'] = $this->_formatPicture($item['picture']);
 			}
 			return $ret;
 		}
@@ -79,7 +79,7 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
 		if(count($ret) > 0) {
 			foreach($ret as &$item) {
-				$item['picture'] = json_decode($item['picture'], true);
+				$item['picture'] = $this->_formatPicture($item['picture']);
 			}
 			return $ret;
 		}
@@ -100,7 +100,7 @@ class ProductModel extends Dao_BaseModel {
 		$ret = $this->_db->query($sql);
 		if(count($ret) > 0) {
 			foreach($ret as &$item) {
-				$item['picture'] = json_decode($item['picture'], true);
+				$item['picture'] = $this->_formatPicture($item['picture']);
 			}
 			return $ret;
 		}
@@ -153,6 +153,16 @@ class ProductModel extends Dao_BaseModel {
 			$this->_db = self::getDB ( self::DATABASE );
 		}
 		return $this->_db->update ( self::TABLE, $arrFields, $arrConds );
+	}
+	private function _formatPicture($picture) {
+		$tmp = json_decode($picture, true);
+		if(!is_array($tmp)) {
+			return array();
+		}
+		return array(
+			'big' => self::PIC_URL . $tmp['big'],
+			'small' => self::PIC_URL . $tmp['small']
+		);
 	}
 }
 ?>

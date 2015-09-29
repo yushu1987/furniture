@@ -51,6 +51,12 @@
 			    <input type="text" id="material" name="material" placeholder="材质" required >
 		  </div>
 	  </div>
+	 <div class="control-group">
+        <label class="control-label" for="area">产地:</label>
+              <div class="controls">
+                            <input type="text" id="area" name="area" placeholder="北京" required >
+                  </div>
+          </div>
 	  <div class="control-group">
         <label class="control-label" for="series">系列:</label>
 	      <div class="controls">
