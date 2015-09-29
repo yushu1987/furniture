@@ -6,6 +6,7 @@
  * @author wangjian
  */
 class ProductModel extends Dao_BaseModel {
+	const PICTURE_URL = '/static/picture/';
 	const TABLE = 'product';
 	const HOT = 1;
 	const PAGE = 11; // 默认翻页是10
@@ -34,7 +35,11 @@ class ProductModel extends Dao_BaseModel {
 				'id' => $pid 
 		] );
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
-		return count ( $ret ) > 0 ? $ret[0] : array ();
+		if(count($ret) > 0) {
+			$ret[0]['picture'] = json_decode($ret[0]['picture'], true);
+			return $ret[0];
+		}
+		return array ();
 	}
 	public function getHotProductList() {
 		if (empty ( $this->_db )) {
@@ -48,7 +53,13 @@ class ProductModel extends Dao_BaseModel {
 				'limit ' . self::PAGE 
 		);
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
-		return count ( $ret ) > 0 ? $ret : array ();
+		if(count($ret) > 0) {
+			foreach($ret as &$item) {
+				$item['picture'] = json_decode($item['picture'], true);
+			}
+			return $ret;
+		}
+		return array ();
 	}
 	public function getProductList($filter = array(), $order = '', $pn = 0, $rn = 11) {
 		if (empty ( $this->_db )) {
@@ -66,7 +77,13 @@ class ProductModel extends Dao_BaseModel {
 			);
 		}
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, $arrAppends );
-		return count ( $ret ) > 0 ? $ret : array ();
+		if(count($ret) > 0) {
+			foreach($ret as &$item) {
+				$item['picture'] = json_decode($item['picture'], true);
+			}
+			return $ret;
+		}
+		return array ();
 	}
 	public function getProductCount() {
 		if (empty ( $this->_db )) {
@@ -81,7 +98,13 @@ class ProductModel extends Dao_BaseModel {
 		$sql = "select %s from %s where name like '%%%s%%' limit %d,11";
 		$sql = sprintf($sql, implode(',', self::$arrFields), self::TABLE, $words, $pn);
 		$ret = $this->_db->query($sql);
-		return count($ret) > 0 ? $ret :array();
+		if(count($ret) > 0) {
+			foreach($ret as &$item) {
+				$item['picture'] = json_decode($item['picture'], true);
+			}
+			return $ret;
+		}
+		return array ();
  	}
 	public function addProduct($arrInput) {
 		$arrFields = array (
@@ -93,7 +116,7 @@ class ProductModel extends Dao_BaseModel {
 				'area' => trim ( $arrInput ['area'] ),
 				'model' => trim ( $arrInput ['model'] ),
 				'material' => trim ( $arrInput ['material'] ),
-				'picture' => $arrInput ['picture'],
+				'picture' => json_encode($arrInput ['picture']),
 				'series' => $arrInput ['series'],
 				'hot' => 0,
 				'createTime' => time (),

@@ -68,11 +68,20 @@ class ProductController extends BaseController {
 		$pid = intval ( $this->requestParams ['pid'] );
 		$objProduct = new ProductModel ();
 		$pinfo = $objProduct->getProductInfoById ( $pid );
+		$this->apiResponse($pinfo);
+	}
+	public function pcinfoAction() {
+		if (empty ( $this->requestParams ['pid'] )) {
+			throw new AppException ( AppExceptionCodes::INVALID_PID );
+		}
+		$pid = intval ( $this->requestParams ['pid'] );
+		$objProduct = new ProductModel ();
+		$pinfo = $objProduct->getProductInfoById ( $pid );
 		if (empty ( $pinfo )) {
 			throw new AppException ( AppExceptionCodes::INVALID_PID );
 		}
 		$this->assign ( 'data', $pinfo );
-		$this->display ( 'page/detail.tpl' );
+		$this->display ( 'page/info.tpl' );
 	}
 	public function modifyAction() {
 		$arrInput = self::_checkModify ( $this->requestParams );
@@ -108,13 +117,11 @@ class ProductController extends BaseController {
 		if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], $typeAttr )) {
 			throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 		}
-		if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], 
-				PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . 
-				substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
+		if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
 			throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 		}
-		$arrInput ['picture'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' .
-				substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+		$arrInput ['picture']['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+		$arrInput ['picture']['small'] =  Picture::resizeImage($arrInput ['picture'] ['big']);;
 		return $arrInput;
 	}
 	private function _checkFilter($arrInput) {
@@ -154,13 +161,11 @@ class ProductController extends BaseController {
 			if (empty ( $_FILES ['upload'] ['type'] ) || ! in_array ( $_FILES ['upload'] ['type'], $typeAttr )) {
 				throw new AppException ( AppExceptionCodes::PIRCTURE_INVALID );
 			}
-			if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], 
-					PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . 
-					substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
+			if (! move_uploaded_file ( $_FILES ['upload'] ['tmp_name'], PIC_PATH . '/' . md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 ) )) {
 				throw new AppException ( AppExceptionCodes::PICTURE_NOT_EXIST );
 			}
-			$arrOutput ['fields']['picture'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . 
-									substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+			$arrOutput ['fields'] ['picture'] ['big'] = md5 ( date ( 'Y-m-d-H:i:s' ) ) . '.' . substr ( strrchr ( $_FILES ['upload'] ['tmp_name'], '.' ), 1 );
+			$arrOutput ['fields'] ['picture'] ['small'] = Picture::resizeImage($arrOutput ['fields'] ['picture'] ['big']);
 		}
 		$arrOutput ['pid'] = $arrInput ['pid'];
 		return $arrOutput;

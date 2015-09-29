@@ -1,57 +1,46 @@
 {%extends file="page/base.tpl" %}
-{%block name="title"%}产品{%/block%}
+{%block name="title"%}产品详情{%/block%}
 {%block name="content"%}
-<div id="content" class="container" >
-	<table class=" table table-bordered table-hover" id="product_list" style="">
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>产品</th>
-				<th>类型</th>
-				<th>系列</th>
-				<th>价格</th>
-				<th>销量</th>
-				<th>颜色</th>
-				<th>图片</th>
-				<th>上架时间</th>
-			</tr>
-		</thead>
-		<tbody>
-			{%foreach from=$data.list key=k item=v%}
-			<tr id="tr{%$k+ 1 %}">
-				<td>{%$k +1%}</td>
-				{%if $v.hot==1%}
-					<td title='热销'>{%$v.name%}<span style="color:red">[热]</span></i></td>
-				{%else%}
-					<td>{%$v.name%}</td>
-				{%/if%}
-				<td>{%$v.type%}</td>
-				<td>{%$v.series%}</td>
-				<td>{%$v.price%}</td>
-				<td>{%$v.sold%}</td>
-				<td>{%$v.color%}</td>
-				<td>{%$v.picture%}</td>
-				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M:%S'%}</td>
-			</tr>
-			{%/foreach%}
-		</tbody>
-	</table>
-	<div>
-	{%assign var="pn" value=$smarty.get.pn%}
-	{%$x = explode('?', $smarty.server.REQUEST_URI)%}
-	{%assign var="uri" value=$x[0]%}
-	<ul align='right'>
-		{%if $pn && $pn >=10%}
-			<li>
-			<a href="{%$uri%}?pn={%$pn - 10%}">上一页</a></li>
-		{%/if%}
-		<li>第{%$pn/10 + 1%}页</li>
-		{%if $data.total > ($pn+10)%}
-			<li><a href="{%$uri%}?pn={%$pn + 10%}">下一页</a></li>
-		{%/if%}
-	</ul>
-	</div>
+<div id="content" class="container">
+	<form class="form-horizontal" enctype="multipart/form-data" method="post" action="/product/modify" >
+	  <div class="control-group">
+	    <label class="control-label" for="upload">更新图片:</label>
+	    <div class="controls">
+	      <input type="file" class="input-small" id="upload" name="upload" accept=".jpg,.png,.gif,.jpeg,.bmp" placeholder="图片路径">
+	    </div>
+	  </div>
+	  {%foreach from=$data key=k item=v%}
+	  	{%if $k! = 'pircture'%}
+	  	<div class="control-group">
+			<label class="control-label" for="{%$k%}">{%$v.name%}:</label>
+			<div class="controls">
+				<input type="text" id="{%$k%}" name="{%$k%}" value='{%$v.val%}' >
+			</div>
+	  	</div>
+	  	{%/if%}
+	  {%/foreach%}
+	  <div class="control-group">
+			<label class="control-label" for="pircutre">图片:</label>
+			<div class="controls">
+				<a id="pircutre" title="" href="{%$data.picture.big%}"><img alt="" src="{%$data.picture.small%}" /></a>
+			</div>
+	  	</div>
+	  <div class="control-group">
+	    <div class="controls">
+	      <button type="submit" class="btn" style="margin-left:20px">提交</button>
+	    </div>
+	  </div>
+	</form>
 </div>
-</div>
-</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#picture").imgbox({
+			'speedIn'		: 0,
+			'speedOut'		: 0,
+			'alignment'		: 'center',
+			'overlayShow'	: true,
+			'allowMultiple'	: false
+	});	
+}
+</script>
 {%/block%}

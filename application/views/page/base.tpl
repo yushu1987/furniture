@@ -5,12 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>{%block name="title"%}家具后台管理{%/block%}</title>
 <link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/lrtk.css" rel="stylesheet">
 <link href="/static/css/main.css" rel="stylesheet">
 <link href="/static/css/tooltip.css" rel="stylesheet">
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/jquery.form.js"></script>
 <script src="/static/js/bootstrap.js"></script>
-<script src="/static/js/super.js"></script>
+<script src="/static/js/jquery.imgbox.pack.js"></script>
 </head>
 <body>
     <div class="container">
