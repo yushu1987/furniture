@@ -6,7 +6,7 @@
 	  <div class="control-group">
 	    <label class="control-label" for="upload">上传图片:</label>
 	    <div class="controls">
-	      <input type="file" class="input-small" id="upload" name="upload" accept=".jpg,.png,.gif,.jpeg,.bmp" required placeholder="文件路径">
+	      <input type="file" class="input-small" id="upload" name="upload" accept=".jpg,.png,.gif,.jpeg,.bmp" required placeholder="图片路径">
 	    </div>
 	  </div>
 	  <div class="control-group">

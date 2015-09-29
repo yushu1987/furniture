@@ -11,7 +11,7 @@ class ErrorController extends Yaf_Controller_Abstract {
 	public function errorAction($exception) {
 		//1. assign to view engine
 		if($exception instanceof AppException) {
-			if($exception->getErrNo() <=100 ) {
+			if(!Conf::isPcUrl() ) {
 				Yaf_Dispatcher::getInstance()->autoRender(false);
 				$ret = array('errno' => $exception->getErrNo(),'errmsg' => $exception->getErrStr(),'data'=> []);
 				echo json_encode($ret);

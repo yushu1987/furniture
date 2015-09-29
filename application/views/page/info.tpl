@@ -1,5 +1,5 @@
 {%extends file="page/base.tpl" %}
-{%block name="title"%}产品列表{%/block%}
+{%block name="title"%}产品{%/block%}
 {%block name="content"%}
 <div id="content" class="container" >
 	<table class=" table table-bordered table-hover" id="product_list" style="">

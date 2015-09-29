@@ -20,6 +20,7 @@ class AppExceptionCodes {
 	const TOKEN_ERROR 			= 100;
 	
 	const ADD_PRODUCT_FAILED	= 101;
+	const MODIFY_PRODUCT_FAILED = 102;
 	public static $errMsg = array (
 			self::PARAM_ERROR => "参数错误",
 			self::PICTURE_NOT_EXIST => "图片没上传",
@@ -32,7 +33,8 @@ class AppExceptionCodes {
 			self::NEW_ORDER_FAILED => "下单失败",
 			self::INVALID_ORDERID => "订单号非法",
 			self::TOKEN_ERROR => "token错误",
-			self::ADD_PRODUCT_FAILED => "上传产品错误"
+			self::ADD_PRODUCT_FAILED => "上传产品错误",
+			self::MODIFY_PRODUCT_FAILED => "修改产品信息失败"
 			
 	);
 }
