@@ -10,6 +10,7 @@
 <link href="/static/css/tooltip.css" rel="stylesheet">
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/jquery.imgbox.pack.js"></script>
 </head>
