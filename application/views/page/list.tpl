@@ -30,7 +30,7 @@
 				<td>{%$v.price%}</td>
 				<td>{%$v.sold%}</td>
 				<td>{%$v.color%}</td>
-				<td><a id="picture" title="{%$v.name%}" href="{%$v.picture.big%}"><img alt="" src="{%$v.picture.small%}" /></a></td>
+				<td><a name="picture" title="{%$v.name%}" href="{%$v.picture.big%}"><img alt="" src="{%$v.picture.small%}" /></a></td>
 				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M'%}</td>
 			</tr>
 			{%/foreach%}
@@ -57,7 +57,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#picture").imgbox({
+	$('[name="picture"]').imgbox({
 			'speedIn'		: 0,
 			'speedOut'		: 0,
 			'alignment'		: 'center',

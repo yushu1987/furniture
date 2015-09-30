@@ -38,7 +38,7 @@
 	<tbody>
 		{%foreach from=$data key=k item=v%}
 		<tr id="tr{%$k+1%}">
-			<td colspan=1>{%$v.id%}<br><a href="/orders/pcinfo?orderId={%$v.id%}"><span style="font-size:12px">详情</span></a></td>
+			<td colspan=1>{%$v.id%}<br><a href="/orders/pcinfo?orderId={%$v.id%}" target='_blank'><span style="font-size:12px">详情</span></a></td>
 			<td colspan=1>{%$v.uname%}</td>
 			<td colspan=2>{%$v.phone%}</td>
 			<td colspan=1>{%$v.amount%}</td>

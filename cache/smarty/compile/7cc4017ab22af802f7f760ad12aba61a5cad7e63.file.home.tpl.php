@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 16:46:03
+<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 18:24:10
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1c5dfe95bbdcc708259c242892595daf379a5e00' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/base.tpl',
-      1 => 1443596964,
+      1 => 1443608230,
       2 => 'file',
     ),
   ),
@@ -60,7 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			 <ul class="nav nav-list bs-docs-sidenav" >
 				<li id="home"><a href="/product/home"><i class="icon-chevron-right"></i>上传产品</a></li>
 				<li id="pclist"><a href="/product/pclist" ><i class="icon-chevron-right"></i>产品列表</a></li>
-				<li id="pcorder"><a href="/order/pcorder"><i class="icon-chevron-right"></i>订单列表</a></li>
+				<li id="pcorder"><a href="/orders/pclist"><i class="icon-chevron-right"></i>订单列表</a></li>
 				<li id="finance"><a href="/order/finance"><i class="icon-chevron-right"></i>账单分析</a></li>
 				<li id="help"><a href="/channel/help" ><i class="icon-chevron-right"></i>帮助</a></li>
 			 </ul>

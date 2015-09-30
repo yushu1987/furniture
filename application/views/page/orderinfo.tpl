@@ -6,16 +6,17 @@
   	 <div class="control-group">
 	    <label class="control-label" for="uname">客户姓名</label>
 	    <div class="controls">
-	    	<div class="input-append">
-	      		<span style="font-size:12px" id='uname'>{%$data.uname%}</span>
-	     </div>
-	     <label class="control-label" for="phone"></label>
+	    	<div>
+	      		<span style="font-size:12px" id='uname' name='uname'>{%$data.uname%}</span>
+	        </div>
+             </div>
+	     <label class="control-label" for="phone">手机</label>
 	     <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='phone'>{%$data.phone%}</span>
 	     	</div>
 	     </div>
-	     <label class="control-label" for="address"></label>
+	     <label class="control-label" for="address">地址</label>
 	     <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='address'>{%$data.address%}</span>
@@ -27,8 +28,9 @@
 	    <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='amount'>{%$data.amount%}</span>
-	     </div>
-	     <label class="control-label" for="pids"></label>
+	        </div>
+             </div>
+	     <label class="control-label" for="pids">产品</label>
 	     <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='pids'>
@@ -38,7 +40,7 @@
 				</span>
 	     	</div>
 	     </div>
-	     <label class="control-label" for="operator"></label>
+	     <label class="control-label" for="operator">接单人</label>
 	     <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='operator'>{%$data.operator%}</span>
@@ -50,18 +52,12 @@
 	    <div class="controls">
 	    	<div class="input-append">
 			{%assign var='color' value=array('#CD0000','#6B6B6B','#7D26CD','#CD853F','#32CD32')%}
-			<span style="font-size:12px;backgroud-color:{%$color.[$data.status]%}" id='status' class="label label-info">{%$data.status%}</span>
+			<span style="font-size:12px;backgroud-color:{%$color[$data.status]%}" id='status' class="label label-info">{%$data.status%}</span>
 	     </div>
 	     <label class="control-label" for="time">订单时间</label>
 	     <div class="controls">
 	    	<div class="input-append">
 	      		<span style="font-size:12px" id='time'>{%$data.time|date_format:"Y-m-d H:i:s"%}</span>
-	     	</div>
-	     </div>
-	     <label class="control-label" for="address"></label>
-	     <div class="controls">
-	    	<div class="input-append">
-	      		<span style="font-size:12px" id='address'>{%$data.address%}</span>
 	     	</div>
 	     </div>
 	  </div>

@@ -22,10 +22,10 @@ class ErrorController extends Yaf_Controller_Abstract {
 				return FALSE;
 			}
 		}else {
-	//		$this->getView()->assign("errno", 100);
-          //              $this->getView()->assign("errmsg", $exception->getTraceAsString());
-			$this->getView()->assign("exception", $exception);
-	//		$this->getView()->display("error/error.tpl");
+		//	$this->getView()->assign("errno", 100);
+                        $this->getView()->assign("errmsg", $exception);
+		//	$this->getView()->assign("exception", $exception);
+		//	$this->getView()->display("error/error.tpl");
 			return FALSE;
 		}
 		//5. render by Yaf 
