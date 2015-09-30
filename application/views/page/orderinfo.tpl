@@ -39,7 +39,7 @@
 	    <label class="col-sm-2 control-label" for="amount">订单状态</label>
 	    <div class="col-sm-4">
 			{%assign var='color' value=array('#CD0000','#6B6B6B','#7D26CD','#CD853F','#32CD32')%}
-            <span style="font-size:12px;backgroud-color:{%$color[$data.status]%}" id='status' class="label-info">{%$data.status%}</span>
+            <span  class="label label-info" style="font-size:12px;backgroud-color:{%$color[$data.status]%}" id='status'>{%$data.status%}</span>
 	    </div>
 	    <label class="col-sm-2 control-label" for="time">订单时间</label>
 	    <div class="col-sm-4">
