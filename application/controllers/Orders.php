@@ -25,6 +25,19 @@ class OrdersController  extends BaseController{
 		$this->apiResponse(array('orderInfo' => $orderInfo));
 	}
 	
+	public function handleAction() {
+		$arrInput = self::_checkHandle($this->requestParams);
+		$objOrders = new OrdersModel();
+		$funcArr = array('cancelOrder','doneOrder','pendingOrder', 'overStatus');
+		$func= $funcArr[$arrInput['status']-1];
+		$ret= $objOrders->$func($arrInput['id']);
+		if(!$ret) {
+			throw new AppException(AppExceptionCodes::HANDLE_ORDER_FAILED);
+		}
+		$this->assign('data', array('ret'=> true, 'jumpUrl'=>'/orders/pclist?status='.$arrInput['status']));
+		$this->display('page/jump.tpl');
+	}
+	
 	public function pclistAction() {
 		$status = isset($this->requestParams['status'])?intval($this->requestParams['status']):'';
 		$pn = intval($this->requestParams['pn']);
@@ -50,7 +63,6 @@ class OrdersController  extends BaseController{
 		$arrInput = self::_checkParam($this->requestParams);
 		$objOrders = new OrdersModel();
 		$objOrders->startTransaction();
-		var_dump($arrInput);
 		$orderId = $objOrders->addOrder($arrInput);
 		$objProduct = new ProductModel();
 		if($orderId) {
@@ -90,6 +102,13 @@ class OrdersController  extends BaseController{
 		}
 		$arrInput['amount']= $amount;
  		return $arrInput;
+	}
+	
+	private function _checkHandle($arrInput) {
+		if(empty($arrInput['id']) || empty($arrInput['status'])) {
+			throw new AppException(AppExceptionCodes::PARAM_ERROR);
+		}
+		return $arrInput;
 	}
 	
 }
