@@ -30,8 +30,8 @@
 				<td>{%$v.price%}</td>
 				<td>{%$v.sold%}</td>
 				<td>{%$v.color%}</td>
-				<td><a id="picture" title="{%$v.name%}" href="{%$v.picture.val.big%}"><img alt="" src="{%$v.picture.val.small%}" /></a></td>
-				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M:%S'%}</td>
+				<td><a id="picture" title="{%$v.name%}" href="{%$v.picture.big%}"><img alt="" src="{%$v.picture.small%}" /></a></td>
+				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M'%}</td>
 			</tr>
 			{%/foreach%}
 		</tbody>
@@ -54,4 +54,16 @@
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#picture").imgbox({
+			'speedIn'		: 0,
+			'speedOut'		: 0,
+			'alignment'		: 'center',
+			'overlayShow'	: true,
+			'allowMultiple'	: false
+	});	
+});
+</script>
 {%/block%}

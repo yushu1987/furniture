@@ -37,7 +37,7 @@ class OrdersModel extends Dao_BaseModel {
 		if (empty ( $this->_db )) {
 			$this->_db = self::getDB ( self::DATABASE );
 		}
-		if($status!='') {
+		if($status!=='') {
 			$arrConds = self::getConds(['status' => $status]);
 		}
 		$arrAppends = array("limit $pn, 10");

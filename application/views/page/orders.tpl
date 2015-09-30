@@ -53,7 +53,7 @@
 			{%assign var='statusArr' value=array('新订单','已取消','未派送','待定中','已结单')%}
 			{%assign var='i' value=0%}
 			<td colspan=1>
-				<form method="post" action="/orders/update?id={%$v.id%}">
+				<form method="post" action="/orders/handle?id={%$v.id%}">
 				<select name='status'>
 					{%foreach from=$statusArr item=status%}
 						{%if $v.status == $i %}

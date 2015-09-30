@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 09:50:39
+<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 16:46:03
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1c5dfe95bbdcc708259c242892595daf379a5e00' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/base.tpl',
-      1 => 1443541691,
+      1 => 1443596964,
       2 => 'file',
     ),
   ),
@@ -41,6 +41,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/jquery.imgbox.pack.js"></script>
+<style>table{table-layout: fixed;}td{word-break: break-all; word-wrap:break-word;}select{width:60px}</style>
 </head>
 <body>
     <div class="container">
