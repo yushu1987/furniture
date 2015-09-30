@@ -1,5 +1,5 @@
 {%extends file="page/base.tpl" %}
-{%block name="title"%}产品列表{%/block%}
+{%block name="title"%}订单详情{%/block%}
 {%block name="content"%}
 <div id="content" class="container" >
 	<table class=" table table-bordered table-hover" id="product_list" style="">
@@ -30,7 +30,7 @@
 				<td>{%$v.price%}</td>
 				<td>{%$v.sold%}</td>
 				<td>{%$v.color%}</td>
-				<td><a id="picture" title="{%$v.name%}" href="{%$v.picture.val.big%}"><img alt="" src="{%$v.picture.val.small%}" /></a></td>
+				<td>{%$v.picture%}</td>
 				<td>{%$v.createTime|date_format:'%Y-%m-%d %H:%M:%S'%}</td>
 			</tr>
 			{%/foreach%}

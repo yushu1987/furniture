@@ -72,6 +72,10 @@ class OrdersModel extends Dao_BaseModel {
 		$arrFields=['status' => self::PEDING_STATUS];
 		return $this->updateOrders($orderId, $arrFields);
 	}
+	public function overOrder($orderId) {
+		$arrFields=['status' => self::OVER_STATUS];
+		return $this->updateOrders($orderId, $arrFields);
+	}
 	public function updateOrders($orderId, $arrFields) {
 		$arrConds = self::getConds ( [ 
 				'id' => $orderId 
