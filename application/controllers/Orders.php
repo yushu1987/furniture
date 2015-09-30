@@ -25,6 +25,27 @@ class OrdersController  extends BaseController{
 		$this->apiResponse(array('orderInfo' => $orderInfo));
 	}
 	
+	public function pcinfoAction () {
+		if(!$this->requestParams['orderId']) {
+			throw new AppException(AppExceptionCodes::INVALID_ORDERID);
+		}
+		$objOrders = new OrdersModel();
+		$orderInfo = $objOrders->getOrderInfoById($this->requestParams['orderId']);
+		if(empty($orderInfo)) {
+			throw new AppException(AppExceptionCodes::INVALID_ORDERID);
+		}
+		$pids =  explode(',', $orderInfo['pids']);
+		$objProduct = new ProductModel();
+		foreach($pids as $pid) {
+			$pinfo = $objProduct->getProductInfoById($pid);
+			if($pinfo) {
+				$orderInfo['pinfo'][] = $pinfo;
+			}
+		}
+		$this->assign('data', $orderInfo);
+		$this->display('page/orderinfo.tpl');
+	}
+	
 	public function handleAction() {
 		$arrInput = self::_checkHandle($this->requestParams);
 		$objOrders = new OrdersModel();
