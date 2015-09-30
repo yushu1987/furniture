@@ -24,6 +24,27 @@ class OrdersController  extends BaseController{
 		}
 		$this->apiResponse(array('orderInfo' => $orderInfo));
 	}
+	
+	public function pclistAction() {
+		$status = isset($this->requestParams['status'])?intval($this->requestParams['status']):'';
+		$pn = intval($this->requestParams['pn']);
+		$objOrders = new OrdersModel();
+		$list = $objOrders->getOrderInfoById($orderId);
+		if($list) {
+			$objProduct = new ProductModel();
+			foreach($list as &$item) {
+				$pids = explode(',', $item['pids']);
+				foreach($pids as $pid) {
+					$pinfo = $objProduct->getProductInfoById($pid);
+					if($pinfo) {
+						$item['pinfo'][] = $pinfo;
+					}
+				}
+			}
+		}
+		$this->assign('data', $list);
+		$this->display('page/orders.tpl');
+	}
 
 	public function addAction() {
 		$arrInput = self::_checkParam($this->requestParams);

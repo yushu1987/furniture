@@ -11,6 +11,7 @@ class OrdersModel extends Dao_BaseModel {
 	const CANCEL_STATUS = 1;
 	const DONE_STATUS = 2;
 	const PEDING_STATUS = 3;
+	const OVER_STATUS = 4;
 	public static $arrFields = array (
 			'id',
 			'uname',
@@ -19,6 +20,7 @@ class OrdersModel extends Dao_BaseModel {
 			'amount',
 			'phone',
 			'createTime',
+			'operator',
 			'status' 
 	);
 	public function getOrderInfoById($orderId) {
@@ -30,6 +32,17 @@ class OrdersModel extends Dao_BaseModel {
 		] );
 		$ret = $this->_db->select ( self::TABLE, self::$arrFields, $arrConds, null, null );
 		return count ( $ret ) > 0 ? $ret[0] : array ();
+	}
+	public function getOrderList($pn = 10, $status='') {
+		if (empty ( $this->_db )) {
+			$this->_db = self::getDB ( self::DATABASE );
+		}
+		if($status!='') {
+			$arrConds = self::getConds(['status' => $status]);
+		}
+		$arrAppends = array("limit $pn, 10");
+		$ret = $this->_db->select(self::TABLE, self::$arrFields, $arrConds, null,$arrAppends);
+		return count ( $ret ) > 0 ? $ret : array ();
 	}
 	public function addOrder($arrInput) {
 		$arrFields = array (

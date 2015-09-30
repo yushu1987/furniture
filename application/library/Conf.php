@@ -16,6 +16,7 @@ class Conf {
 			'/product/pclist',
 			'/product/pcinfo',
 			'/product/modify',
+			'/orders/pclist'
 		);
 		$uri = $_SERVER['REQUEST_URI'];
 		if(($pos = strpos($uri,"?")) !== false) {
