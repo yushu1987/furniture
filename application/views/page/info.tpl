@@ -34,7 +34,7 @@
 	 <div class="control-group" id="images">
 	   <label class="control-label" for="pircutre">图片:</label>
 		<div class="controls">
-		   <a id="picture" title="123" href="{%$data.picture.val.big%}"><img alt="" src="{%$data.picture.val.small%}" /></a>
+		   <a id="picture" title="{%$data.name.val%}" href="{%$data.picture.val.big%}"><img alt="" src="{%$data.picture.val.small%}" /></a>
 		</div>
 	  </div>
 	  <div class="control-group">

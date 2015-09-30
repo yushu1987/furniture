@@ -1,1 +1,2 @@
 WARNING: 09-29 20:27:05: [/home/wangjian/furniture/application/library/AppException.php:29] errno[102] ip[61.148.203.250] logId[0] app[] uri[/product/modify] className[] 修改产品信息失败 at [ProductController->modifyAction at /home/wangjian/furniture/application/controllers/Product.php:129]
+WARNING: 09-30 00:04:12: [/home/wangjian/furniture/application/library/Picture.php:63] errno[0] ip[123.125.212.74] logId[0] app[] uri[/product/modify] className[] small photo /home/wangjian/furniture/static/picture/small-e8531f4028787a5351e7a6cb09fbd6a2.jpg

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-29 16:55:55
+<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 09:50:39
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,13 +7,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7cc4017ab22af802f7f760ad12aba61a5cad7e63' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/home.tpl',
-      1 => 1443516896,
+      1 => 1443528192,
       2 => 'file',
     ),
     '1c5dfe95bbdcc708259c242892595daf379a5e00' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/base.tpl',
-      1 => 1443516896,
+      1 => 1443541691,
       2 => 'file',
     ),
   ),
@@ -38,6 +38,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <link href="/static/css/tooltip.css" rel="stylesheet">
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/jquery.imgbox.pack.js"></script>
 </head>
@@ -115,6 +116,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			    <input type="text" id="material" name="material" placeholder="材质" required >
 		  </div>
 	  </div>
+	 <div class="control-group">
+        <label class="control-label" for="area">产地:</label>
+              <div class="controls">
+                            <input type="text" id="area" name="area" placeholder="北京" required >
+                  </div>
+          </div>
 	  <div class="control-group">
         <label class="control-label" for="series">系列:</label>
 	      <div class="controls">

@@ -13,6 +13,7 @@
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.js"></script>
 <script src="/static/js/jquery.imgbox.pack.js"></script>
+<style>table{table-layout: fixed;}td{word-break: break-all; word-wrap:break-word;}select{width:60px}</style>
 </head>
 <body>
     <div class="container">

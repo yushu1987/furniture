@@ -2,3 +2,4 @@ picture
 *.log.wf
 *.log
 cache
+.tpl.php

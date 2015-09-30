@@ -29,7 +29,7 @@ class OrdersController  extends BaseController{
 		$status = isset($this->requestParams['status'])?intval($this->requestParams['status']):'';
 		$pn = intval($this->requestParams['pn']);
 		$objOrders = new OrdersModel();
-		$list = $objOrders->getOrderInfoById($orderId);
+		$list = $objOrders->getOrderList($pn, $status);
 		if($list) {
 			$objProduct = new ProductModel();
 			foreach($list as &$item) {
