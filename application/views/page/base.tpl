@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>{%block name="title"%}家具后台管理{%/block%}</title>
 <link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css.map" rel="stylesheet">
 <link href="/static/css/lrtk.css" rel="stylesheet">
 <link href="/static/css/main.css" rel="stylesheet">
 <link href="/static/css/tooltip.css" rel="stylesheet">
