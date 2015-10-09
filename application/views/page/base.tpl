@@ -35,7 +35,7 @@
 				<li id="pclist"><a href="/product/pclist" ><i class="icon-chevron-right"></i>产品列表</a></li>
 				<li id="pcorder"><a href="/orders/pclist"><i class="icon-chevron-right"></i>订单列表</a></li>
 				<li id="finance"><a href="/order/finance"><i class="icon-chevron-right"></i>账单分析</a></li>
-				<li id="help"><a href="/channel/help" ><i class="icon-chevron-right"></i>帮助</a></li>
+				<li id="help"><a href="/product/help" ><i class="icon-chevron-right"></i>帮助</a></li>
 			 </ul>
 		 </div>
 			<div class="span12">
