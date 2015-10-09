@@ -46,6 +46,9 @@ class OrdersController  extends BaseController{
 		$this->display('page/orderinfo.tpl');
 	}
 	
+	public function financeAction() {
+		$this->display('page/finance.tpl');
+	}
 	public function handleAction() {
 		$arrInput = self::_checkHandle($this->requestParams);
 		$objOrders = new OrdersModel();
