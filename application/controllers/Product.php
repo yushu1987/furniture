@@ -129,6 +129,10 @@ class ProductController extends BaseController {
 			throw new AppException ( AppExceptionCodes::MODIFY_PRODUCT_FAILED );
 		}
 	}
+	public function helpAction() {
+		$this->assign('data', Conf::getHelpConf());
+		$this->display('page/help.tpl');
+	}
 	private function _checkParam($arrInput) {
 		foreach ( self::$filterAttr as $attr ) {
 			if (empty ( $arrInput [$attr] )) {
