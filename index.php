@@ -1,7 +1,7 @@
 <?php
 /**
  * 入口文件
- * @date 2015-9-16 6:14:26
+ * @date 2015-09-16 6:14:26
  * @author wangjian
  * @version 1.0.0
  */
