@@ -43,7 +43,7 @@
 			</div>
 		 </div>
     	<div class="subcontainer footer">
-			<center>{%$smarty.now|date_format:'%Y'%}@<strong>&nbsp; &nbsp;居然之家</strong>&nbsp; &nbsp;Design By: 王坚</center>
+			<center>{%$smarty.now|date_format:'%Y'%}@<strong>&nbsp; &nbsp;大风范</strong>&nbsp; &nbsp;Design By: 大风范</center>
 		</div>
     </div>
 </html>

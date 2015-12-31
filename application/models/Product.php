@@ -118,7 +118,7 @@ class ProductModel extends Dao_BaseModel {
 				'material' => trim ( $arrInput ['material'] ),
 				'picture' => json_encode($arrInput ['picture']),
 				'series' => $arrInput ['series'],
-				'hot' => 0,
+				'hot' => self::HOT,
 				'createTime' => time (),
 				'status' => 0 
 		);

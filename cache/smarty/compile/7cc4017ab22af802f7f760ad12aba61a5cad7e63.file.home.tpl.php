@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty 3.1.4, created on 2015-09-30 18:24:10
+<?php /* Smarty version Smarty 3.1.4, created on 2015-12-31 13:14:33
          compiled from "/home/wangjian/furniture/application/views/page/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3004242415608da5881a484-93236048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -13,7 +13,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1c5dfe95bbdcc708259c242892595daf379a5e00' => 
     array (
       0 => '/home/wangjian/furniture/application/views/page/base.tpl',
-      1 => 1443608230,
+      1 => 1451538666,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>家具后台</title>
 <link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css.map" rel="stylesheet">
 <link href="/static/css/lrtk.css" rel="stylesheet">
 <link href="/static/css/main.css" rel="stylesheet">
 <link href="/static/css/tooltip.css" rel="stylesheet">
@@ -61,8 +62,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<li id="home"><a href="/product/home"><i class="icon-chevron-right"></i>上传产品</a></li>
 				<li id="pclist"><a href="/product/pclist" ><i class="icon-chevron-right"></i>产品列表</a></li>
 				<li id="pcorder"><a href="/orders/pclist"><i class="icon-chevron-right"></i>订单列表</a></li>
-				<li id="finance"><a href="/order/finance"><i class="icon-chevron-right"></i>账单分析</a></li>
-				<li id="help"><a href="/channel/help" ><i class="icon-chevron-right"></i>帮助</a></li>
+				<li id="finance"><a href="/orders/finance"><i class="icon-chevron-right"></i>账单分析</a></li>
+				<li id="help"><a href="/product/help" ><i class="icon-chevron-right"></i>帮助</a></li>
 			 </ul>
 		 </div>
 			<div class="span12">
@@ -141,7 +142,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		 </div>
     	<div class="subcontainer footer">
 			<center><?php echo smarty_modifier_date_format(time(),'%Y');?>
-@<strong>&nbsp; &nbsp;居然之家</strong>&nbsp; &nbsp;Design By: 王坚</center>
+@<strong>&nbsp; &nbsp;大风范</strong>&nbsp; &nbsp;Design By: 大风范</center>
 		</div>
     </div>
 </html>

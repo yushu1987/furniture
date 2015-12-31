@@ -16,9 +16,11 @@ class Conf {
 			'/product/pclist',
 			'/product/pcinfo',
 			'/product/modify',
+			'/product/help',
 			'/orders/pclist',
 			'/orders/handle',
-			'/orders/pcinfo'
+			'/orders/pcinfo',
+			'/orders/finance',
 		);
 		$uri = $_SERVER['REQUEST_URI'];
 		if(($pos = strpos($uri,"?")) !== false) {
