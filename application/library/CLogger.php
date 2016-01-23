@@ -35,7 +35,6 @@ class CLogger {
 		$this->intLevel = intval ( $arrLogConfig ['level'] );
 		$this->strLogFile = $arrLogConfig ['logPath'] .  "/" . self::LOG_FILE_NAME;
 		if(!is_dir( $arrLogConfig ['logPath'] )) {
-			var_dump($arrLogConfig ['logPath']);
 			mkdir( $arrLogConfig ['logPath'] );
 		}
 		$this->arrSelfLogFiles = empty($arrLogConfig ['selfLogPath']) ? "" : $arrLogConfig ['selfLogPath'];

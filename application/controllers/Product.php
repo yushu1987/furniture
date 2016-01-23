@@ -38,8 +38,8 @@ class ProductController extends BaseController {
 		$arrInput = self::_checkFilter ( $this->requestParams );
 		$objProuduct = new ProductModel ();
 		$arr ['list'] = $objProuduct->getProductList ( $arrInput ['filter'], $arrInput ['order'], $arrInput ['pn'] );
-		$arr ['list'] = array_slice($arr ['list'], 0, 10);
 		$arr ['hasMore'] = count ( $arr ['list'] ) > 10 ? 1 : 0;
+		$arr ['list'] = array_slice($arr ['list'], 0, 10);
 		$this->apiResponse ( $arr );
 	}
 	public function pclistAction() {
